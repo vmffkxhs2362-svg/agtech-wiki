@@ -1,8 +1,8 @@
 {
     "id": "tomato",
     "title": "Tomato (Solanum lycopersicum)",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Cherry-Tomatoes-Greenhouse-Sitia-Crete-Greece-3.jpg",
-    "image_caption": "High-wire Greenhouse Tomato Cultivation (Wikimedia Commons)",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg",
+    "image_caption": "Tomato Fruit (Solanum lycopersicum)",
     "description": "Comprehensive engineering data for greenhouse tomato climate control, crop steering, and fertigation.",
     "taxonomy": {
         "family": "Solanaceae (가지과)",
