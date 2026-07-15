@@ -15,18 +15,18 @@
     "climate_strategy": [
         {
             "region": "The Netherlands (High-Tech Glasshouse)",
-            "strategy": "Relies heavily on combined heat and power (CHP) to provide heating and CO2 simultaneously. Precision control of VPD (0.8 - 1.2 kPa) ensures maximum transpiration and nutrient uptake. High-wire training systems are standard, allowing plants to reach 15+ meters in length. <sup id=\"cite-1\"><a href=\"#ref-1\" style=\"color: var(--primary); text-decoration: none;\">[1]</a></sup>",
+            "strategy": "Relies heavily on combined heat and power (CHP) to provide heating and CO2 simultaneously. Precision control of VPD (0.8 - 1.2 kPa) ensures maximum transpiration and nutrient uptake. High-wire training systems are standard, allowing plants to reach 15+ meters in length.",
             "tech_level": "High (Full Climate Computer, Boiler, CO2 Enrichment, HPS/LED Lighting)"
         },
         {
             "region": "Almería, Spain (Passive Solar)",
-            "strategy": "Low-tech plastic 'parral' greenhouses dominating the Mediterranean. No active heating. Relies entirely on passive ventilation (roof vents) and shade paint (whitewash) during summer to manage extreme heat loads. VPD often exceeds safe limits (2.0+ kPa) in summer, leading to blossom end rot. <sup id=\"cite-3\"><a href=\"#ref-3\" style=\"color: var(--primary); text-decoration: none;\">[3]</a></sup>",
+            "strategy": "Low-tech plastic 'parral' greenhouses dominating the Mediterranean. No active heating. Relies entirely on passive ventilation (roof vents) and shade paint (whitewash) during summer to manage extreme heat loads. VPD often exceeds safe limits (2.0+ kPa) in summer, leading to blossom end rot. <sup id=\"cite-1\"><a href=\"#ref-1\" style=\"color: var(--primary); text-decoration: none;\">[1]</a></sup>",
             "tech_level": "Low/Medium (Passive ventilation, minimal heating)"
         }
     ],
 
     "crop_steering": {
-        "intro": "Crop Steering is the practice of manipulating environmental and root-zone parameters to push the plant toward either vegetative growth (building structure) or generative growth (producing fruit). <sup id=\"cite-2\"><a href=\"#ref-2\" style=\"color: var(--primary); text-decoration: none;\">[2]</a></sup>",
+        "intro": "Crop Steering is the practice of manipulating environmental and root-zone parameters to push the plant toward either vegetative growth (building structure) or generative growth (producing fruit).",
         "vegetative_triggers": {
             "temperature_dif": "Low to Zero (e.g., Day 22°C / Night 20°C)",
             "vpd_target": "0.6 - 0.8 kPa (Low transpiration stress)",
@@ -47,27 +47,11 @@
     "references": [
         {
             "id": 1,
-            "text": "Wageningen University & Research (WUR). Tomato Crop Steering Strategies in High-Wire Systems. (2025)",
-            "original_title": "Groeisturing bij tomaat in de hogedraadteelt",
-            "publisher": "Wageningen University & Research (WUR)",
-            "gov_id": "WUR Horticulture Library Index",
-            "link": "https://www.wur.nl"
-        },
-        {
-            "id": 2,
-            "text": "Priva Climate Control. VPD Optimization and Plant Balance.",
-            "original_title": "VPD-optimalisatie en plantbalans in de glastuinbouw",
-            "publisher": "Priva Climate Control B.V.",
-            "gov_id": "Priva Technical Bulletin",
-            "link": "https://www.priva.com"
-        },
-        {
-            "id": 3,
             "text": "MDPI Agronomy. Passive Cooling in Mediterranean Greenhouses.",
             "original_title": "Greenhouse cooling in the Mediterranean region",
             "publisher": "MDPI Agronomy Journal",
             "gov_id": "DOI: 10.3390/agronomy10070966",
             "link": "references/EU_MDPI_tomato-cooling-mediterranean_2022.pdf"
         }
-     ]
+      ]
 }

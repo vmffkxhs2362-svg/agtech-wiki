@@ -19,8 +19,13 @@
         },
         {
             "region": "The Netherlands (WUR)",
-            "strategy": "Year-round production in high-tech glasshouses using supplemental LED lighting (Red/Blue/Far-Red spectrums). Precise VPD control ensures calcium transport to the fruit, preventing tip-burn on leaves and calyx. <sup id=\"cite-2\"><a href=\"#ref-2\" style=\"color: var(--primary); text-decoration: none;\">[2]</a></sup>",
+            "strategy": "Year-round production in high-tech glasshouses using supplemental LED lighting (Red/Blue/Far-Red spectrums). Precise VPD control ensures calcium transport to the fruit, preventing tip-burn on leaves and calyx.",
             "tech_level": "High (LEDs, active dehumidification, elevated gutters)"
+        },
+        {
+            "region": "United States (Florida Plasticulture)",
+            "strategy": "Utilizes the annual winter plasticulture system on raised beds. Major focus is on frost protection using overhead sprinkler systems when temperatures fall below freezing. Fertigation is managed dynamically through drip tape. <sup id=\"cite-3\"><a href=\"#ref-3\" style=\"color: var(--primary); text-decoration: none;\">[3]</a></sup>",
+            "tech_level": "Medium/High (Raised beds, black plastic mulch, overhead sprinkler frost protection)"
         }
     ],
     "crop_steering": {
@@ -37,7 +42,7 @@
         }
     },
     "fertigation": {
-        "intro": "Strawberries are extremely sensitive to salinity (high EC) compared to tomatoes. <sup id=\"cite-3\"><a href=\"#ref-3\" style=\"color: var(--primary); text-decoration: none;\">[3]</a></sup>",
+        "intro": "Strawberries are extremely sensitive to salinity (high EC) compared to tomatoes. <sup id=\"cite-2\"><a href=\"#ref-2\" style=\"color: var(--primary); text-decoration: none;\">[2]</a></sup>",
         "vegetative_phase": "Balanced N-P-K. Target EC: 1.2 mS/cm. Keep ammonium levels low to prevent pH drops in the substrate.",
         "generative_phase": "Increase Potassium (K) and Calcium (Ca) for fruit firmness. Target EC: 1.5 - 1.8 mS/cm. Maintain high drainage fraction (30%+) to prevent salt accumulation."
     },
@@ -52,19 +57,19 @@
         },
         {
             "id": 2,
-            "text": "WUR (Wageningen University & Research). Greenhouse Strawberry Cultivation Guide.",
-            "original_title": "Kasgrienden aardbeienteelt onder glas",
-            "publisher": "Wageningen University & Research (WUR)",
-            "gov_id": "WUR Horticulture Index",
-            "link": "https://www.wur.nl"
-        },
-        {
-            "id": 3,
             "text": "Lee, I. H., et al. (2013). Establishing Mother Plant Planting Date for Uniform Strawberry Plug Seedling Production. Report of Agricultural Science and Technology Development, Chungnam ARES. (p. 655-658)",
             "original_title": "딸기 균일묘 생산을 위한 모주 정식시기 구명",
             "publisher": "Chungnam Agricultural Research and Extension Services",
             "gov_id": "Chungnam ARES Report 2013 (p. 655-658)",
             "link": "references/KR_CN_strawberry_mother-plant-timing_2013.pdf"
+        },
+        {
+            "id": 3,
+            "text": "Whitaker, V. M., et al. (2025). Chapter 16. Strawberry Production. Vegetable Production Handbook of Florida, UF/IFAS Extension (HS736/CV134).",
+            "original_title": "Chapter 16. Strawberry Production (Florida Handbook)",
+            "publisher": "University of Florida, IFAS Extension",
+            "gov_id": "UF/IFAS HS736",
+            "link": "references/US_FL_strawberry_production_2025.pdf"
         }
-    ]
+     ]
 }
