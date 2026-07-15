@@ -8,12 +8,12 @@
     "climate_strategy": [
         {
             "region": "South Korea (RDA Smart Farm)",
-            "strategy": "Dominates the winter market (Dec-Apr) using single-span plastic houses. Heating is minimal, relying on multi-layer thermal screens. The primary challenge is extreme humidity at night, requiring precision dehumidification or morning heating bursts to prevent Botrytis cinerea.",
+            "strategy": "Dominates the winter market (Dec-Apr) using single-span plastic houses. Heating is minimal, relying on multi-layer thermal screens. The primary challenge is extreme humidity at night, requiring precision dehumidification or morning heating bursts to prevent Botrytis cinerea. <sup id=\"cite-1\"><a href=\"#ref-1\" style=\"color: var(--primary); text-decoration: none;\">[1]</a></sup>",
             "tech_level": "Medium (Multi-layer thermal screens, forced-air heaters)"
         },
         {
             "region": "The Netherlands (WUR)",
-            "strategy": "Year-round production in high-tech glasshouses using supplemental LED lighting (Red/Blue/Far-Red spectrums). Precise VPD control ensures calcium transport to the fruit, preventing tip-burn on leaves and calyx.",
+            "strategy": "Year-round production in high-tech glasshouses using supplemental LED lighting (Red/Blue/Far-Red spectrums). Precise VPD control ensures calcium transport to the fruit, preventing tip-burn on leaves and calyx. <sup id=\"cite-2\"><a href=\"#ref-2\" style=\"color: var(--primary); text-decoration: none;\">[2]</a></sup>",
             "tech_level": "High (LEDs, active dehumidification, elevated gutters)"
         }
     ],
@@ -31,7 +31,7 @@
         }
     },
     "fertigation": {
-        "intro": "Strawberries are extremely sensitive to salinity (high EC) compared to tomatoes.",
+        "intro": "Strawberries are extremely sensitive to salinity (high EC) compared to tomatoes. <sup id=\"cite-3\"><a href=\"#ref-3\" style=\"color: var(--primary); text-decoration: none;\">[3]</a></sup>",
         "vegetative_phase": "Balanced N-P-K. Target EC: 1.2 mS/cm. Keep ammonium levels low to prevent pH drops in the substrate.",
         "generative_phase": "Increase Potassium (K) and Calcium (Ca) for fruit firmness. Target EC: 1.5 - 1.8 mS/cm. Maintain high drainage fraction (30%+) to prevent salt accumulation."
     },
