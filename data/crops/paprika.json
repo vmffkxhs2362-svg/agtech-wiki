@@ -44,11 +44,11 @@
     "references": [
         {
             "id": 1,
-            "text": "RDA (Rural Development Administration). Agricultural Technology Guide 83: Paprika (Sweet Pepper) (2021 Rev.). Chapter 5 (Climate Control, p. 112-118).",
-            "original_title": "농업기술길잡이 83 - 단고추(파프리카) (제5장 환경관리, p. 112-118)",
+            "text": "RDA (Rural Development Administration). Agricultural Technology Guide 124: Colored Sweet Pepper (Paprika) (2021 Rev.). Chapter 5 (Climate Control, p. 112-118).",
+            "original_title": "농업기술길잡이 124 - 착색단고추(파프리카) (제5장 환경관리, p. 112-118)",
             "publisher": "Rural Development Administration, Republic of Korea",
             "gov_id": "ISBN 979-11-290-2051-2",
-            "link": "https://www.nongsaro.go.kr/portal/ps/psb/psbx/cropEbookMain.ps?menuId=PS65290&cropsEbookNm=%ED%8C%8C%ED%94%84%EB%A6%AC%EC%B9%B4"
+            "link": "references/KR_RDA_paprika_manual_2021.pdf"
         }
     ]
 }
