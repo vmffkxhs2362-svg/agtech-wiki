@@ -44,27 +44,27 @@
     "references": [
         {
             "id": 1,
-            "text": "Lee, I. H., et al. (2013). Establishing Mother Plant Planting Date for Uniform Strawberry Plug Seedling Production. Report of Agricultural Science and Technology Development, Chungnam ARES.",
+            "text": "RDA (Rural Development Administration). Agricultural Technology Guide 40: Strawberry (2020 Rev.). Chapter 4 (Propagation Technology, p. 76-82).",
+            "original_title": "농업기술길잡이 40 - 딸기 (제4장 육묘기술, p. 76-82)",
+            "publisher": "Rural Development Administration, Republic of Korea",
+            "gov_id": "ISBN 979-11-290-1673-7",
+            "link": "https://www.nongsaro.go.kr"
+        },
+        {
+            "id": 2,
+            "text": "WUR (Wageningen University & Research). Greenhouse Strawberry Cultivation Guide.",
+            "original_title": "Kasgrienden aardbeienteelt onder glas",
+            "publisher": "Wageningen University & Research (WUR)",
+            "gov_id": "WUR Horticulture Index",
+            "link": "https://www.wur.nl"
+        },
+        {
+            "id": 3,
+            "text": "Lee, I. H., et al. (2013). Establishing Mother Plant Planting Date for Uniform Strawberry Plug Seedling Production. Report of Agricultural Science and Technology Development, Chungnam ARES. (p. 655-658)",
             "original_title": "딸기 균일묘 생산을 위한 모주 정식시기 구명",
             "publisher": "Chungnam Agricultural Research and Extension Services",
             "gov_id": "Chungnam ARES Report 2013 (p. 655-658)",
             "link": "references/KR_CN_strawberry_mother-plant-timing_2013.pdf"
-        },
-        {
-            "id": 2,
-            "text": "Wageningen University & Research. LED Lighting Strategies for Winter Strawberries.",
-            "original_title": "LED-belichting bij aardbei in de winterteelt",
-            "publisher": "Wageningen University & Research (WUR)",
-            "gov_id": "WUR Horticulture Library Index",
-            "link": "https://www.wur.nl/en/Research-Results/Research-Institutes/plant-research/Greenhouse-Horticulture.htm"
-        },
-        {
-            "id": 3,
-            "text": "Grodan. Precision Irrigation for Substrate Strawberries.",
-            "original_title": "Food Forward: The Promising Future of Strawberry Cultivation",
-            "publisher": "Grodan B.V. (Rockwool Group)",
-            "gov_id": "Grodan Technical Bulletin 2021",
-            "link": "https://www.grodan.com/crops/strawberry/"
         }
     ]
 }
