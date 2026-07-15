@@ -6,6 +6,12 @@
     <title>Home | AgriAtlas</title>
     <meta name="description" content="Global Database for CEA Engineering">
     
+    <!-- OpenGraph SEO Tags -->
+    <meta property="og:title" content="Home | AgriAtlas">
+    <meta property="og:description" content="Global Database for CEA Engineering">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg">
+    <meta property="og:type" content="website">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,9 +68,6 @@
             z-index: 100;
             height: 70px;
             box-sizing: border-box;
-        }
-            top: 0;
-            z-index: 100;
         }
 
         .logo {
@@ -259,15 +262,100 @@
             nav.sidebar-left, aside.sidebar-right { display: none; }
             main { padding: 2rem; max-width: 100%; }
         }
+
+        /* Search Dropdown */
+        .search-container {
+            position: relative;
+        }
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 300px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .search-result-item {
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+        .search-result-item:hover {
+            background: var(--bg-glass);
+        }
+        .search-result-item h4 {
+            margin: 0 0 0.25rem 0;
+            color: var(--primary);
+        }
+        .search-result-item p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        /* Mobile Hamburger */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .sidebar-left {
+                position: fixed;
+                top: 70px;
+                left: -300px;
+                bottom: 0;
+                width: 260px;
+                z-index: 999;
+                background: var(--bg-surface);
+                transition: left 0.3s ease;
+            }
+            .sidebar-left.open {
+                left: 0;
+            }
+            .sidebar-right {
+                display: none; /* Hide references sidebar on mobile to save space */
+            }
+            header {
+                padding: 0 1rem;
+            }
+            .header-right {
+                display: none; /* Hide search and translate on very small screens, or adjust them */
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="logo">🌍 Agri<span>Atlas</span> Wiki</a>
-        
         <div style="display: flex; align-items: center; gap: 1rem;">
-            <input type="text" class="search-bar" placeholder="Search crops, climates, data...">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <a href="index.html" class="logo">🌍 Agri<span>Atlas</span> Wiki</a>
+        </div>
+        
+        <div class="header-right" style="display: flex; align-items: center; gap: 1rem;">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-bar" placeholder="Search crops, climates, data...">
+                <div id="searchResults" class="search-results"></div>
+            </div>
             
             <!-- Google Translate Widget -->
             <div id="google_translate_element"></div>
@@ -286,7 +374,7 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <div class="container">
-    <nav class="sidebar-left">
+    <nav class="sidebar-left" id="mobileSidebar">
         <div class="nav-group">
             <div class="nav-title">📚 Encyclopedia</div>
             <!-- Alphabetical Crop List -->
@@ -360,6 +448,59 @@
         </div>
     </aside>
 </div>
+
+<script>
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        document.getElementById('mobileSidebar').classList.toggle('open');
+    }
+
+    // Client-side Search Engine
+    let searchIndex = [];
+    
+    fetch('search_index.json')
+        .then(response => response.json())
+        .then(data => { searchIndex = data; })
+        .catch(err => console.error("Search index not found (only works if running via local server)"));
+
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.toLowerCase();
+        searchResults.innerHTML = '';
+        
+        if (query.length < 2) {
+            searchResults.style.display = 'none';
+            return;
+        }
+
+        const filtered = searchIndex.filter(item => 
+            item.title.toLowerCase().includes(query) || 
+            item.desc.toLowerCase().includes(query)
+        );
+
+        if (filtered.length > 0) {
+            searchResults.style.display = 'flex';
+            filtered.slice(0, 5).forEach(item => {
+                const a = document.createElement('a');
+                a.href = item.url;
+                a.className = 'search-result-item';
+                a.innerHTML = `<h4>${item.title}</h4><p>${item.desc.substring(0, 50)}...</p>`;
+                searchResults.appendChild(a);
+            });
+        } else {
+            searchResults.style.display = 'none';
+        }
+    });
+
+    // Hide search results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.search-container')) {
+            searchResults.style.display = 'none';
+        }
+    });
+</script>
 
 </body>
 </html>

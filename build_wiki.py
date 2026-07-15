@@ -130,6 +130,7 @@ def build_crop_page(template, data, nav_html):
         
     output = template.replace("{{TITLE}}", f"{data['title']} | AgriAtlas")
     output = output.replace("{{DESC}}", data.get('description', ''))
+    output = output.replace("{{OG_IMAGE}}", data.get('image_url', ''))
     output = output.replace("{{CONTENT}}", content_html)
     output = output.replace("{{CROP_NAVIGATION}}", nav_html)
     
@@ -170,11 +171,23 @@ def build_index_page(template, crops, nav_html):
     
     output = template.replace("{{TITLE}}", "Home | AgriAtlas")
     output = output.replace("{{DESC}}", "Global Database for CEA Engineering")
+    output = output.replace("{{OG_IMAGE}}", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg")
     output = output.replace("{{CONTENT}}", content_html)
     output = output.replace("{{CROP_NAVIGATION}}", nav_html)
     
     with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(output)
+
+def generate_search_index(crops):
+    search_data = []
+    for crop in crops:
+        search_data.append({
+            "title": crop['title'],
+            "url": f"{crop['id']}.html",
+            "desc": crop.get('description', '')
+        })
+    with open(os.path.join(OUT_DIR, "search_index.json"), "w", encoding="utf-8") as f:
+        json.dump(search_data, f, ensure_ascii=False)
 
 def main():
     with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
@@ -198,6 +211,10 @@ def main():
     nav_html_index = generate_navigation(crops_data, active_id=None)
     build_index_page(template, crops_data, nav_html_index)
     print("Built: index.html (Homepage)")
+    
+    # Generate search index
+    generate_search_index(crops_data)
+    print("Generated: search_index.json")
     
 if __name__ == "__main__":
     main()
