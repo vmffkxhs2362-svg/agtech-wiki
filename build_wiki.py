@@ -4,22 +4,23 @@ import glob
 
 TEMPLATE_PATH = "_wiki_template.html"
 CROPS_DIR = "data/crops/"
+TOPICS_DIR = "data/topics/"
 OUT_DIR = "./"
 
-def generate_navigation(crops, active_id):
-    # Sort crops alphabetically by title
-    crops_sorted = sorted(crops, key=lambda x: x['title'])
+def generate_navigation(items, active_id):
+    # Sort items alphabetically by title
+    items_sorted = sorted(items, key=lambda x: x['title'])
     nav_html = ""
-    for crop in crops_sorted:
-        active_class = " active" if crop['id'] == active_id else ""
-        nav_html += f'<a href="{crop["id"]}.html" class="nav-link{active_class}">{crop["title"]}</a>\n            '
+    for item in items_sorted:
+        active_class = " active" if item['id'] == active_id else ""
+        nav_html += f'<a href="{item["id"]}.html" class="nav-link{active_class}">{item["title"]}</a>\n            '
     return nav_html
 
-def build_crop_page(template, data, nav_html):
+def build_page(template, data, crop_nav_html, topic_nav_html):
     content_html = f"""
         <div class="breadcrumb">
             <a href="index.html" style="color: var(--primary); text-decoration: none;">AgriAtlas</a> 
-            <span>/</span> <a href="#" style="color: var(--primary); text-decoration: none;">Crops</a> 
+            <span>/</span> <a href="#" style="color: var(--primary); text-decoration: none;">Knowledge Base</a> 
             <span>/</span> <span style="color: var(--text-muted);">{data['title']}</span>
         </div>
         
@@ -37,9 +38,9 @@ def build_crop_page(template, data, nav_html):
     tax = data.get('taxonomy', {})
     content_html += f"""
         <div class="metadata">
-            <span>📚 Family: {tax.get('family', 'N/A')}</span>
-            <span>🌱 Genus: {tax.get('genus', 'N/A')}</span>
-            <span>🧬 Species: {tax.get('species', 'N/A')}</span>
+            <span>📚 Family/Class: {tax.get('family', 'N/A')}</span>
+            <span>🌱 Genus/Sub-category: {tax.get('genus', 'N/A')}</span>
+            <span>🧬 Species/Type: {tax.get('species', 'N/A')}</span>
             <span>🌍 Origin: {tax.get('origin', 'N/A')}</span>
         </div>
         
@@ -48,10 +49,11 @@ def build_crop_page(template, data, nav_html):
         </p>
     """
 
-    # Section 2: Global Climate Strategy
+    # Section 2: Global Climate Strategy / Care Strategy
     if 'climate_strategy' in data:
+        strategy_title = "Global Climate Strategy" if data['id'] != "care_farming" else "Operational Strategy"
         content_html += f"""
-            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="climate-strategy">Global Climate Strategy</h2>
+            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="climate-strategy">{strategy_title}</h2>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
         """
         for strat in data['climate_strategy']:
@@ -59,24 +61,27 @@ def build_crop_page(template, data, nav_html):
                 <div class="content-box" style="margin-bottom: 0;">
                     <h3 style="margin-top: 0; color: var(--primary); font-size: 1.2rem;">🌍 {strat.get('region', '')}</h3>
                     <p style="color: #f8fafc; font-size: 0.95rem; line-height: 1.5;">{strat.get('strategy', '')}</p>
-                    <span style="font-size: 0.85rem; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; display: inline-block; margin-top: 1rem;">⚙️ Tech: {strat.get('tech_level', '')}</span>
+                    <span style="font-size: 0.85rem; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; display: inline-block; margin-top: 1rem;">⚙️ Tech Level: {strat.get('tech_level', '')}</span>
                 </div>
             """
         content_html += "</div>"
 
-    # Section 3: Crop Steering
+    # Section 3: Steering
     if 'crop_steering' in data:
+        steering_title = "Crop Steering Parameters" if data['id'] != "care_farming" else "Therapeutic Environment Steering"
         cs = data['crop_steering']
+        col1_title = "🌱 Vegetative Target (Leaf Growth)" if data['id'] != "care_farming" else "🌱 Comfort Target (User Comfort)"
+        col2_title = "🍅 Generative Target (Fruit Growth)" if data['id'] != "care_farming" else "🧩 Sensory Target (User Activity)"
         content_html += f"""
-            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="crop-steering">Crop Steering Parameters</h2>
+            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="crop-steering">{steering_title}</h2>
             <p style="color: #cbd5e1; margin-bottom: 2rem;">{cs.get('intro', '')}</p>
             
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 3rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
                 <thead>
                     <tr style="background: rgba(0,0,0,0.3);">
                         <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: var(--text-muted);">Parameter</th>
-                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #86efac;">🌱 Vegetative Target (Leaf Growth)</th>
-                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #fca5a5;">🍅 Generative Target (Fruit Growth)</th>
+                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #86efac;">{col1_title}</th>
+                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #fca5a5;">{col2_title}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -91,7 +96,7 @@ def build_crop_page(template, data, nav_html):
                         <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">{cs['generative_triggers'].get('vpd_target', '')}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">Irrigation Strategy</td>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">Irrigation & Space Strategy</td>
                         <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">{cs['vegetative_triggers'].get('irrigation', '')}</td>
                         <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">{cs['generative_triggers'].get('irrigation', '')}</td>
                     </tr>
@@ -99,24 +104,27 @@ def build_crop_page(template, data, nav_html):
             </table>
         """
 
-    # Section 4: Fertigation & CTA
+    # Section 4: Fertigation & Substrate
     if 'fertigation' in data:
         fg = data['fertigation']
+        phase1_title = "Phase 1: Vegetative Vigor" if data['id'] != "care_farming" else "Phase 1: Safe Vegetative Management"
+        phase2_title = "Phase 2: Generative / Brix Steering" if data['id'] != "care_farming" else "Phase 2: Sensory Olfactory Stimulation"
         content_html += f"""
             <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="fertigation">Fertigation Strategy</h2>
             <p style="color: #cbd5e1; margin-bottom: 1.5rem;">{fg.get('intro', '')}</p>
             
             <div style="background: rgba(255,255,255,0.03); border-left: 4px solid var(--primary); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 8px 8px 0;">
-                <h4 style="margin-top: 0; color: #86efac;">Phase 1: Vegetative</h4>
+                <h4 style="margin-top: 0; color: #86efac;">{phase1_title}</h4>
                 <p style="margin-bottom: 0; color: #f8fafc;">{fg.get('vegetative_phase', '')}</p>
             </div>
             
             <div style="background: rgba(255,255,255,0.03); border-left: 4px solid #fca5a5; padding: 1.5rem; margin-bottom: 3rem; border-radius: 0 8px 8px 0;">
-                <h4 style="margin-top: 0; color: #fca5a5;">Phase 2: Generative (Fruiting)</h4>
+                <h4 style="margin-top: 0; color: #fca5a5;">{phase2_title}</h4>
                 <p style="margin-bottom: 0; color: #f8fafc;">{fg.get('generative_phase', '')}</p>
             </div>
         """
 
+    # Calculators integration CTA
     content_html += f"""
         <div id="calculators" style="background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(56,189,248,0.1) 100%); border: 1px solid rgba(16,185,129,0.3); padding: 2.5rem; border-radius: 12px; text-align: center; margin-bottom: 2rem;">
             <h2 style="margin-top: 0; color: white; font-size: 1.8rem;">Ready to steer your crop?</h2>
@@ -165,13 +173,14 @@ def build_crop_page(template, data, nav_html):
     output = output.replace("{{DESC}}", data.get('description', ''))
     output = output.replace("{{OG_IMAGE}}", data.get('image_url', ''))
     output = output.replace("{{CONTENT}}", content_html)
-    output = output.replace("{{CROP_NAVIGATION}}", nav_html)
+    output = output.replace("{{CROP_NAVIGATION}}", crop_nav_html)
+    output = output.replace("{{TOPIC_NAVIGATION}}", topic_nav_html)
     output = output.replace("{{RIGHT_SIDEBAR}}", sidebar_html)
     
     with open(os.path.join(OUT_DIR, f"{data['id']}.html"), "w", encoding="utf-8") as f:
         f.write(output)
 
-def build_index_page(template, crops, nav_html):
+def build_index_page(template, crops, topics, crop_nav_html, topic_nav_html):
     # Generates the homepage (index.html)
     content_html = f"""
         <div class="breadcrumb">
@@ -181,10 +190,11 @@ def build_index_page(template, crops, nav_html):
         <h1 id="overview">Welcome to AgriAtlas</h1>
         <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
             The world's most advanced, data-driven engineering repository for Controlled Environment Agriculture (CEA).
-            Select a crop from the navigation menu to explore deep-dive engineering strategies, or browse the grid below.
+            Select a crop or topic from the navigation menu to explore deep-dive engineering strategies, or browse the grid below.
         </p>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">📚 Crop Encyclopedia</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
     """
     
     crops_sorted = sorted(crops, key=lambda x: x['title'])
@@ -201,25 +211,53 @@ def build_index_page(template, crops, nav_html):
             </a>
         """
         
+    content_html += f"""
+        </div>
+        
+        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">🌱 Methodologies & Topics</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+    """
+    
+    topics_sorted = sorted(topics, key=lambda x: x['title'])
+    for topic in topics_sorted:
+        content_html += f"""
+            <a href="{topic['id']}.html" style="text-decoration: none; color: inherit; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s;">
+                <div style="height: 150px; background: #000; overflow: hidden;">
+                    <img src="{topic.get('image_url', '')}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary);">{topic['title']}</h3>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">{topic.get('description', '')[:100]}...</p>
+                </div>
+            </a>
+        """
+        
     content_html += "</div>"
     
     output = template.replace("{{TITLE}}", "Home | AgriAtlas")
     output = output.replace("{{DESC}}", "Global Database for CEA Engineering")
     output = output.replace("{{OG_IMAGE}}", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg")
     output = output.replace("{{CONTENT}}", content_html)
-    output = output.replace("{{CROP_NAVIGATION}}", nav_html)
+    output = output.replace("{{CROP_NAVIGATION}}", crop_nav_html)
+    output = output.replace("{{TOPIC_NAVIGATION}}", topic_nav_html)
     output = output.replace("{{RIGHT_SIDEBAR}}", "")
     
     with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(output)
 
-def generate_search_index(crops):
+def generate_search_index(crops, topics):
     search_data = []
     for crop in crops:
         search_data.append({
             "title": crop['title'],
             "url": f"{crop['id']}.html",
             "desc": crop.get('description', '')
+        })
+    for topic in topics:
+        search_data.append({
+            "title": topic['title'],
+            "url": f"{topic['id']}.html",
+            "desc": topic.get('description', '')
         })
     # Save as JS to avoid CORS file:/// blocks when running locally
     with open(os.path.join(OUT_DIR, "search_index.js"), "w", encoding="utf-8") as f:
@@ -232,24 +270,38 @@ def main():
     # Read all crop JSONs
     crop_files = glob.glob(os.path.join(CROPS_DIR, "*.json"))
     crops_data = []
-    
     for cf in crop_files:
         with open(cf, "r", encoding="utf-8") as f:
             crops_data.append(json.load(f))
             
+    # Read all topic JSONs
+    topic_files = glob.glob(os.path.join(TOPICS_DIR, "*.json"))
+    topics_data = []
+    for tf in topic_files:
+        with open(tf, "r", encoding="utf-8") as f:
+            topics_data.append(json.load(f))
+            
+    crop_nav_html = generate_navigation(crops_data, active_id=None)
+    topic_nav_html = generate_navigation(topics_data, active_id=None)
+    
     # Build each crop page
     for data in crops_data:
-        nav_html = generate_navigation(crops_data, active_id=data['id'])
-        build_crop_page(template, data, nav_html)
-        print(f"Built: {data['id']}.html")
+        active_crop_nav = generate_navigation(crops_data, active_id=data['id'])
+        build_page(template, data, active_crop_nav, topic_nav_html)
+        print(f"Built crop: {data['id']}.html")
+        
+    # Build each topic page
+    for data in topics_data:
+        active_topic_nav = generate_navigation(topics_data, active_id=data['id'])
+        build_page(template, data, crop_nav_html, active_topic_nav)
+        print(f"Built topic: {data['id']}.html")
         
     # Build index page
-    nav_html_index = generate_navigation(crops_data, active_id=None)
-    build_index_page(template, crops_data, nav_html_index)
+    build_index_page(template, crops_data, topics_data, crop_nav_html, topic_nav_html)
     print("Built: index.html (Homepage)")
     
     # Generate search index
-    generate_search_index(crops_data)
+    generate_search_index(crops_data, topics_data)
     print("Generated: search_index.js")
     
 if __name__ == "__main__":
