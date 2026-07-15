@@ -34,5 +34,22 @@
         "intro": "Strawberries are extremely sensitive to salinity (high EC) compared to tomatoes.",
         "vegetative_phase": "Balanced N-P-K. Target EC: 1.2 mS/cm. Keep ammonium levels low to prevent pH drops in the substrate.",
         "generative_phase": "Increase Potassium (K) and Calcium (Ca) for fruit firmness. Target EC: 1.5 - 1.8 mS/cm. Maintain high drainage fraction (30%+) to prevent salt accumulation."
-    }
+    },
+    "references": [
+        {
+            "id": 1,
+            "text": "RDA (Rural Development Administration, Korea). Smart Farm Strawberry Cultivation Manual.",
+            "link": "https://www.rda.go.kr"
+        },
+        {
+            "id": 2,
+            "text": "Wageningen University & Research. LED Lighting Strategies for Winter Strawberries.",
+            "link": "https://www.wur.nl/en/show/LED-lighting-in-strawberry.htm"
+        },
+        {
+            "id": 3,
+            "text": "Grodan. Precision Irrigation for Substrate Strawberries.",
+            "link": "https://www.grodan.com"
+        }
+    ]
 }
