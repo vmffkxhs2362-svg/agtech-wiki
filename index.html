@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Potato (Solanum tuberosum) | AgriAtlas</title>
-    <meta name="description" content="Global comparative analysis of potato cultivation strategies across different climate zones.">
+    <title>Tomato (Solanum lycopersicum) | AgriAtlas</title>
+    <meta name="description" content="Comprehensive engineering data for greenhouse tomato climate control, crop steering, and fertigation.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -218,21 +218,12 @@
 
     <nav class="sidebar-left">
         <div class="nav-group">
-            <div class="nav-title">🍅 By Crop</div>
-            <a href="#" class="nav-link active">🥔 Potato (Solanum tuberosum)</a>
-            <a href="#" class="nav-link">🍅 Tomato (Solanum lycopersicum)</a>
-            <a href="#" class="nav-link">🍓 Strawberry (Fragaria × ananassa)</a>
-        </div>
-        <div class="nav-group">
-            <div class="nav-title">🌦️ By Climate Zone</div>
-            <a href="#" class="nav-link">Csa (Mediterranean)</a>
-            <a href="#" class="nav-link">Dwa (Monsoon / Korea)</a>
-            <a href="#" class="nav-link">Dfb (Continental / Hungary)</a>
-        </div>
-        <div class="nav-group">
-            <div class="nav-title">⚙️ Engineering</div>
-            <a href="#" class="nav-link">VPD Optimization</a>
-            <a href="#" class="nav-link">Greenhouse U-Values</a>
+            <div class="nav-title">🍅 Tomato Engineering</div>
+            <a href="#overview" class="nav-link active">1. Overview & Botany</a>
+            <a href="#climate-strategy" class="nav-link">2. Global Climate Strategy</a>
+            <a href="#crop-steering" class="nav-link">3. Crop Steering (Veg/Gen)</a>
+            <a href="#fertigation" class="nav-link">4. Fertigation & EC Control</a>
+            <a href="#calculators" class="nav-link" style="color: var(--accent-green);">🧮 Go to Calculators →</a>
         </div>
     </nav>
 
@@ -241,10 +232,15 @@
         <div class="breadcrumb">
             <a href="#" style="color: var(--primary); text-decoration: none;">AgriAtlas</a> 
             <span>/</span> <a href="#" style="color: var(--primary); text-decoration: none;">Crops</a> 
-            <span>/</span> <span style="color: var(--text-muted);">Potato (Solanum tuberosum)</span>
+            <span>/</span> <span style="color: var(--text-muted);">Tomato (Solanum lycopersicum)</span>
         </div>
         
-        <h1 id="overview">Potato (Solanum tuberosum)</h1>
+        <h1 id="overview">Tomato (Solanum lycopersicum)</h1>
+    
+        <figure style="margin: 0 0 2rem 0; width: 100%;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Cherry-Tomatoes-Greenhouse-Sitia-Crete-Greece-3.jpg" alt="High-wire Greenhouse Tomato Cultivation (Wikimedia Commons)" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+            <figcaption style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">High-wire Greenhouse Tomato Cultivation (Wikimedia Commons)</figcaption>
+        </figure>
         
         <div class="metadata">
             <span>📚 Crop Family: Solanaceae</span>
@@ -253,61 +249,87 @@
         </div>
         
         <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
-            The potato is a starchy root vegetable native to the Americas. It is one of the world's most critical staple crops. However, due to its sensitivity to high temperatures and water stress, cultivation strategies vary wildly depending on the regional climate.
+            The tomato is the most extensively grown greenhouse crop globally. It serves as the primary model organism for Controlled Environment Agriculture (CEA). Mastering tomato cultivation requires deep engineering precision, specifically the manipulation of temperature differentials (DIF) and Vapor Pressure Deficit (VPD) to 'steer' the plant between vegetative (leafy) and generative (fruiting) growth phases.
         </p>
-        
-        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="comparison">Global Climate Comparison</h2>
     
-        <div class="content-box" id="southkorea">
-            <h2 style="font-family: 'Outfit'; font-size: 1.6rem; display: flex; align-items: center; gap: 0.5rem;">
-                🌍 South Korea <span style="font-size: 0.9rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.6rem; border-radius: 12px; color: var(--text-muted); font-family: 'Inter';">Dwa (Monsoon-influenced hot-summer humid continental)</span>
-            </h2>
-            
-            <h3 style="color: #fca5a5; font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Climate Challenge</h3>
-            <p style="color: #f8fafc;">Heavy summer monsoon rains cause massive fungal infections (Late Blight) and tuber rotting if planted in summer.</p>
-            
-            <h3 style="color: var(--accent-green); font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Cultivation Strategy</h3>
-            <p style="color: #f8fafc;">Avoid the monsoon. Potatoes are planted in early spring (March) and harvested before the monsoon begins in late June. Alternatively, they are grown in autumn after the rains stop, or in high-altitude alpine regions (Gangwon Province) during summer where it remains cool and well-drained.</p>
-            
-            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
-                <h4 style="margin-top: 0; color: var(--primary); font-size: 0.95rem; text-transform: uppercase;">Key Metrics</h4>
-                <ul style="color: var(--text-muted); line-height: 1.8; margin-bottom: 0; padding-left: 1.2rem;">
-                    <li><strong>Planting Season:</strong> Spring (Mar-Jun) / Autumn (Aug-Nov)</li>
-                    <li><strong>Irrigation Need:</strong> Low to Moderate (Rain-fed mostly, avoiding monsoon)</li>
-                    <li><strong>Primary Disease Risk:</strong> Phytophthora infestans (Late Blight) driven by high humidity</li>
-                </ul>
+        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="climate-strategy">Global Climate Strategy</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
+    
+            <div class="content-box" style="margin-bottom: 0;">
+                <h3 style="margin-top: 0; color: var(--primary); font-size: 1.2rem;">🌍 The Netherlands (High-Tech Glasshouse)</h3>
+                <p style="color: #f8fafc; font-size: 0.95rem; line-height: 1.5;">Relies heavily on combined heat and power (CHP) to provide heating and CO2 simultaneously. Precision control of VPD (0.8 - 1.2 kPa) ensures maximum transpiration and nutrient uptake. High-wire training systems are standard, allowing plants to reach 15+ meters in length.</p>
+                <span style="font-size: 0.85rem; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; display: inline-block; margin-top: 1rem;">⚙️ Tech: High (Full Climate Computer, Boiler, CO2 Enrichment, HPS/LED Lighting)</span>
+            </div>
+        
+            <div class="content-box" style="margin-bottom: 0;">
+                <h3 style="margin-top: 0; color: var(--primary); font-size: 1.2rem;">🌍 Almería, Spain (Passive Solar)</h3>
+                <p style="color: #f8fafc; font-size: 0.95rem; line-height: 1.5;">Low-tech plastic 'parral' greenhouses dominating the Mediterranean. No active heating. Relies entirely on passive ventilation (roof vents) and shade paint (whitewash) during summer to manage extreme heat loads. VPD often exceeds safe limits (2.0+ kPa) in summer, leading to blossom end rot.</p>
+                <span style="font-size: 0.85rem; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; display: inline-block; margin-top: 1rem;">⚙️ Tech: Low/Medium (Passive ventilation, minimal heating)</span>
             </div>
         </div>
+        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="crop-steering">Crop Steering Parameters</h2>
+        <p style="color: #cbd5e1; margin-bottom: 2rem;">Crop Steering is the practice of manipulating environmental and root-zone parameters to push the plant toward either vegetative growth (building structure) or generative growth (producing fruit).</p>
         
-        <div class="content-box" id="hungary">
-            <h2 style="font-family: 'Outfit'; font-size: 1.6rem; display: flex; align-items: center; gap: 0.5rem;">
-                🌍 Hungary <span style="font-size: 0.9rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.6rem; border-radius: 12px; color: var(--text-muted); font-family: 'Inter';">Dfb (Warm-summer humid continental)</span>
-            </h2>
-            
-            <h3 style="color: #fca5a5; font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Climate Challenge</h3>
-            <p style="color: #f8fafc;">Increasingly hot and dry summers due to continental climate shifts, leading to water stress and secondary growth (knobby tubers).</p>
-            
-            <h3 style="color: var(--accent-green); font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Cultivation Strategy</h3>
-            <p style="color: #f8fafc;">Planted in mid-April and harvested in September. Because summers lack the heavy monsoon of Korea but suffer from drought, supplementary overhead irrigation is absolutely critical during the tuber bulking phase (July-August) to maintain consistent soil moisture and prevent malformed potatoes.</p>
-            
-            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
-                <h4 style="margin-top: 0; color: var(--primary); font-size: 0.95rem; text-transform: uppercase;">Key Metrics</h4>
-                <ul style="color: var(--text-muted); line-height: 1.8; margin-bottom: 0; padding-left: 1.2rem;">
-                    <li><strong>Planting Season:</strong> Spring-Summer (Apr-Sep)</li>
-                    <li><strong>Irrigation Need:</strong> High (Crucial during summer drought)</li>
-                    <li><strong>Primary Disease Risk:</strong> Colorado Potato Beetle (Leptinotarsa decemlineata) and drought-induced physiological defects</li>
-                </ul>
-            </div>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 3rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+            <thead>
+                <tr style="background: rgba(0,0,0,0.3);">
+                    <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: var(--text-muted);">Parameter</th>
+                    <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #86efac;">🌱 Vegetative Target (Leaf Growth)</th>
+                    <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #fca5a5;">🍅 Generative Target (Fruit Growth)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">Temperature DIF</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">Low to Zero (e.g., Day 22°C / Night 20°C)</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">High (e.g., Day 24°C / Night 16°C)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">VPD (kPa)</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">0.6 - 0.8 kPa (Low transpiration stress)</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">1.0 - 1.4 kPa (High transpiration stress)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">Irrigation Strategy</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">Frequent, small shots to keep media wet (Low EC buildup)</td>
+                    <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">Infrequent, large shots allowing media to dry out (High EC buildup)</td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="fertigation">Fertigation Strategy</h2>
+        <p style="color: #cbd5e1; margin-bottom: 1.5rem;">Nutrient solutions must shift dynamically based on the steering phase.</p>
+        
+        <div style="background: rgba(255,255,255,0.03); border-left: 4px solid var(--primary); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 8px 8px 0;">
+            <h4 style="margin-top: 0; color: #86efac;">Phase 1: Vegetative</h4>
+            <p style="margin-bottom: 0; color: #f8fafc;">Higher Nitrogen (N) relative to Potassium (K) to support leaf expansion. Target root-zone EC: 2.5 - 3.0 mS/cm.</p>
         </div>
         
+        <div style="background: rgba(255,255,255,0.03); border-left: 4px solid #fca5a5; padding: 1.5rem; margin-bottom: 3rem; border-radius: 0 8px 8px 0;">
+            <h4 style="margin-top: 0; color: #fca5a5;">Phase 2: Generative (Fruiting)</h4>
+            <p style="margin-bottom: 0; color: #f8fafc;">Higher Potassium (K) to support fruit bulking and sugar transport. Target root-zone EC: 4.0 - 5.0 mS/cm.</p>
+        </div>
+
+        <div id="calculators" style="background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(56,189,248,0.1) 100%); border: 1px solid rgba(16,185,129,0.3); padding: 2.5rem; border-radius: 12px; text-align: center; margin-bottom: 2rem;">
+            <h2 style="margin-top: 0; color: white; font-size: 1.8rem;">Ready to steer your crop?</h2>
+            <p style="color: #cbd5e1; font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                AgriAtlas provides the theory, but every greenhouse is unique. Use our precise engineering calculators to hit these target VPD and Temperature DIF values based on your specific facility's U-Value and heating capacity.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://smartfarm.inwoovation.com/vpd.html" target="_blank" style="display: inline-block; background: var(--primary); color: #0f172a; font-weight: bold; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-size: 1.1rem; transition: transform 0.2s;">Run VPD Calculator</a>
+                <a href="https://smartfarm.inwoovation.com/heat_loss.html" target="_blank" style="display: inline-block; background: transparent; border: 2px solid var(--accent-green); color: var(--accent-green); font-weight: bold; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-size: 1.1rem; transition: transform 0.2s;">Calculate Heat Loss</a>
+            </div>
+        </div>
+    
     </main>
 
     <aside class="sidebar-right">
         <div class="toc-title">On this page</div>
         <a href="#overview" class="toc-link">1. Overview</a>
-        <a href="#korea" class="toc-link">2. Cultivation in Korea (Dwa)</a>
-        <a href="#hungary" class="toc-link">3. Cultivation in Hungary (Dfb)</a>
-        <a href="#comparison" class="toc-link">4. Climate Comparison Data</a>
+        <a href="#climate-strategy" class="toc-link">2. Global Climate Strategy</a>
+        <a href="#crop-steering" class="toc-link">3. Crop Steering Parameters</a>
+        <a href="#fertigation" class="toc-link">4. Fertigation Strategy</a>
+        <a href="#calculators" class="toc-link" style="color: var(--primary); font-weight: bold;">[Launch Calculators]</a>
     </aside>
 
 </body>

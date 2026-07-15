@@ -1,30 +1,41 @@
 {
-    "id": "potato",
-    "title": "Potato (Solanum tuberosum)",
-    "description": "Global comparative analysis of potato cultivation strategies across different climate zones.",
-    "overview": "The potato is a starchy root vegetable native to the Americas. It is one of the world's most critical staple crops. However, due to its sensitivity to high temperatures and water stress, cultivation strategies vary wildly depending on the regional climate.",
-    "regions": [
+    "id": "tomato",
+    "title": "Tomato (Solanum lycopersicum)",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Cherry-Tomatoes-Greenhouse-Sitia-Crete-Greece-3.jpg",
+    "image_caption": "High-wire Greenhouse Tomato Cultivation (Wikimedia Commons)",
+    "description": "Comprehensive engineering data for greenhouse tomato climate control, crop steering, and fertigation.",
+    "overview": "The tomato is the most extensively grown greenhouse crop globally. It serves as the primary model organism for Controlled Environment Agriculture (CEA). Mastering tomato cultivation requires deep engineering precision, specifically the manipulation of temperature differentials (DIF) and Vapor Pressure Deficit (VPD) to 'steer' the plant between vegetative (leafy) and generative (fruiting) growth phases.",
+    
+    "climate_strategy": [
         {
-            "country": "South Korea",
-            "climate_zone": "Dwa (Monsoon-influenced hot-summer humid continental)",
-            "challenge": "Heavy summer monsoon rains cause massive fungal infections (Late Blight) and tuber rotting if planted in summer.",
-            "strategy": "Avoid the monsoon. Potatoes are planted in early spring (March) and harvested before the monsoon begins in late June. Alternatively, they are grown in autumn after the rains stop, or in high-altitude alpine regions (Gangwon Province) during summer where it remains cool and well-drained.",
-            "key_metrics": {
-                "planting_season": "Spring (Mar-Jun) / Autumn (Aug-Nov)",
-                "irrigation_need": "Low to Moderate (Rain-fed mostly, avoiding monsoon)",
-                "primary_disease": "Phytophthora infestans (Late Blight) driven by high humidity"
-            }
+            "region": "The Netherlands (High-Tech Glasshouse)",
+            "strategy": "Relies heavily on combined heat and power (CHP) to provide heating and CO2 simultaneously. Precision control of VPD (0.8 - 1.2 kPa) ensures maximum transpiration and nutrient uptake. High-wire training systems are standard, allowing plants to reach 15+ meters in length.",
+            "tech_level": "High (Full Climate Computer, Boiler, CO2 Enrichment, HPS/LED Lighting)"
         },
         {
-            "country": "Hungary",
-            "climate_zone": "Dfb (Warm-summer humid continental)",
-            "challenge": "Increasingly hot and dry summers due to continental climate shifts, leading to water stress and secondary growth (knobby tubers).",
-            "strategy": "Planted in mid-April and harvested in September. Because summers lack the heavy monsoon of Korea but suffer from drought, supplementary overhead irrigation is absolutely critical during the tuber bulking phase (July-August) to maintain consistent soil moisture and prevent malformed potatoes.",
-            "key_metrics": {
-                "planting_season": "Spring-Summer (Apr-Sep)",
-                "irrigation_need": "High (Crucial during summer drought)",
-                "primary_disease": "Colorado Potato Beetle (Leptinotarsa decemlineata) and drought-induced physiological defects"
-            }
+            "region": "Almería, Spain (Passive Solar)",
+            "strategy": "Low-tech plastic 'parral' greenhouses dominating the Mediterranean. No active heating. Relies entirely on passive ventilation (roof vents) and shade paint (whitewash) during summer to manage extreme heat loads. VPD often exceeds safe limits (2.0+ kPa) in summer, leading to blossom end rot.",
+            "tech_level": "Low/Medium (Passive ventilation, minimal heating)"
         }
-    ]
+    ],
+
+    "crop_steering": {
+        "intro": "Crop Steering is the practice of manipulating environmental and root-zone parameters to push the plant toward either vegetative growth (building structure) or generative growth (producing fruit).",
+        "vegetative_triggers": {
+            "temperature_dif": "Low to Zero (e.g., Day 22°C / Night 20°C)",
+            "vpd_target": "0.6 - 0.8 kPa (Low transpiration stress)",
+            "irrigation": "Frequent, small shots to keep media wet (Low EC buildup)"
+        },
+        "generative_triggers": {
+            "temperature_dif": "High (e.g., Day 24°C / Night 16°C)",
+            "vpd_target": "1.0 - 1.4 kPa (High transpiration stress)",
+            "irrigation": "Infrequent, large shots allowing media to dry out (High EC buildup)"
+        }
+    },
+
+    "fertigation": {
+        "intro": "Nutrient solutions must shift dynamically based on the steering phase.",
+        "vegetative_phase": "Higher Nitrogen (N) relative to Potassium (K) to support leaf expansion. Target root-zone EC: 2.5 - 3.0 mS/cm.",
+        "generative_phase": "Higher Potassium (K) to support fruit bulking and sugar transport. Target root-zone EC: 4.0 - 5.0 mS/cm."
+    }
 }
