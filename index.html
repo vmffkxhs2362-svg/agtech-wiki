@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato (Solanum tuberosum) | AgriAtlas</title>
+    <meta name="description" content="Global comparative analysis of potato cultivation strategies across different climate zones.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-base: #0f172a;
+            --bg-surface: #1e293b;
+            --bg-glass: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.4);
+            --accent-green: #10b981;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            display: grid;
+            grid-template-columns: 280px 1fr 250px;
+            grid-template-rows: 70px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        header {
+            grid-column: 1 / -1;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .search-bar {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: white;
+            width: 300px;
+            outline: none;
+            font-family: 'Inter';
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        /* Left Sidebar (Navigation) */
+        nav.sidebar-left {
+            background: var(--bg-surface);
+            border-right: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+        }
+
+        .nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 0.3rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .breadcrumb {
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .breadcrumb span { color: var(--text-muted); }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .metadata {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .content-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .content-box h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        /* Right Sidebar (TOC) */
+        aside.sidebar-right {
+            padding: 2rem 1.5rem;
+            border-left: 1px solid var(--border);
+            position: sticky;
+            top: 70px;
+            height: calc(100vh - 70px);
+        }
+
+        .toc-title {
+            font-size: 0.85rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .toc-link {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+            transition: color 0.2s;
+        }
+        
+        .toc-link:hover { color: var(--primary); }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            body { grid-template-columns: 250px 1fr; }
+            aside.sidebar-right { display: none; }
+        }
+        @media (max-width: 768px) {
+            body { grid-template-columns: 1fr; }
+            nav.sidebar-left { display: none; }
+            main { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">🌍 Agri<span>Atlas</span> Wiki</a>
+        <input type="text" class="search-bar" placeholder="Search crops, climates, data...">
+    </header>
+
+    <nav class="sidebar-left">
+        <div class="nav-group">
+            <div class="nav-title">🍅 By Crop</div>
+            <a href="#" class="nav-link active">🥔 Potato (Solanum tuberosum)</a>
+            <a href="#" class="nav-link">🍅 Tomato (Solanum lycopersicum)</a>
+            <a href="#" class="nav-link">🍓 Strawberry (Fragaria × ananassa)</a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-title">🌦️ By Climate Zone</div>
+            <a href="#" class="nav-link">Csa (Mediterranean)</a>
+            <a href="#" class="nav-link">Dwa (Monsoon / Korea)</a>
+            <a href="#" class="nav-link">Dfb (Continental / Hungary)</a>
+        </div>
+        <div class="nav-group">
+            <div class="nav-title">⚙️ Engineering</div>
+            <a href="#" class="nav-link">VPD Optimization</a>
+            <a href="#" class="nav-link">Greenhouse U-Values</a>
+        </div>
+    </nav>
+
+    <main>
+        
+        <div class="breadcrumb">
+            <a href="#" style="color: var(--primary); text-decoration: none;">AgriAtlas</a> 
+            <span>/</span> <a href="#" style="color: var(--primary); text-decoration: none;">Crops</a> 
+            <span>/</span> <span style="color: var(--text-muted);">Potato (Solanum tuberosum)</span>
+        </div>
+        
+        <h1 id="overview">Potato (Solanum tuberosum)</h1>
+        
+        <div class="metadata">
+            <span>📚 Crop Family: Solanaceae</span>
+            <span>⏱️ Last Updated: 2026-07-15</span>
+            <span>✍️ Contributors: AgriAtlas Automation</span>
+        </div>
+        
+        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
+            The potato is a starchy root vegetable native to the Americas. It is one of the world's most critical staple crops. However, due to its sensitivity to high temperatures and water stress, cultivation strategies vary wildly depending on the regional climate.
+        </p>
+        
+        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="comparison">Global Climate Comparison</h2>
+    
+        <div class="content-box" id="southkorea">
+            <h2 style="font-family: 'Outfit'; font-size: 1.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                🌍 South Korea <span style="font-size: 0.9rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.6rem; border-radius: 12px; color: var(--text-muted); font-family: 'Inter';">Dwa (Monsoon-influenced hot-summer humid continental)</span>
+            </h2>
+            
+            <h3 style="color: #fca5a5; font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Climate Challenge</h3>
+            <p style="color: #f8fafc;">Heavy summer monsoon rains cause massive fungal infections (Late Blight) and tuber rotting if planted in summer.</p>
+            
+            <h3 style="color: var(--accent-green); font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Cultivation Strategy</h3>
+            <p style="color: #f8fafc;">Avoid the monsoon. Potatoes are planted in early spring (March) and harvested before the monsoon begins in late June. Alternatively, they are grown in autumn after the rains stop, or in high-altitude alpine regions (Gangwon Province) during summer where it remains cool and well-drained.</p>
+            
+            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+                <h4 style="margin-top: 0; color: var(--primary); font-size: 0.95rem; text-transform: uppercase;">Key Metrics</h4>
+                <ul style="color: var(--text-muted); line-height: 1.8; margin-bottom: 0; padding-left: 1.2rem;">
+                    <li><strong>Planting Season:</strong> Spring (Mar-Jun) / Autumn (Aug-Nov)</li>
+                    <li><strong>Irrigation Need:</strong> Low to Moderate (Rain-fed mostly, avoiding monsoon)</li>
+                    <li><strong>Primary Disease Risk:</strong> Phytophthora infestans (Late Blight) driven by high humidity</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="content-box" id="hungary">
+            <h2 style="font-family: 'Outfit'; font-size: 1.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                🌍 Hungary <span style="font-size: 0.9rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.6rem; border-radius: 12px; color: var(--text-muted); font-family: 'Inter';">Dfb (Warm-summer humid continental)</span>
+            </h2>
+            
+            <h3 style="color: #fca5a5; font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Climate Challenge</h3>
+            <p style="color: #f8fafc;">Increasingly hot and dry summers due to continental climate shifts, leading to water stress and secondary growth (knobby tubers).</p>
+            
+            <h3 style="color: var(--accent-green); font-size: 1rem; margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Cultivation Strategy</h3>
+            <p style="color: #f8fafc;">Planted in mid-April and harvested in September. Because summers lack the heavy monsoon of Korea but suffer from drought, supplementary overhead irrigation is absolutely critical during the tuber bulking phase (July-August) to maintain consistent soil moisture and prevent malformed potatoes.</p>
+            
+            <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+                <h4 style="margin-top: 0; color: var(--primary); font-size: 0.95rem; text-transform: uppercase;">Key Metrics</h4>
+                <ul style="color: var(--text-muted); line-height: 1.8; margin-bottom: 0; padding-left: 1.2rem;">
+                    <li><strong>Planting Season:</strong> Spring-Summer (Apr-Sep)</li>
+                    <li><strong>Irrigation Need:</strong> High (Crucial during summer drought)</li>
+                    <li><strong>Primary Disease Risk:</strong> Colorado Potato Beetle (Leptinotarsa decemlineata) and drought-induced physiological defects</li>
+                </ul>
+            </div>
+        </div>
+        
+    </main>
+
+    <aside class="sidebar-right">
+        <div class="toc-title">On this page</div>
+        <a href="#overview" class="toc-link">1. Overview</a>
+        <a href="#korea" class="toc-link">2. Cultivation in Korea (Dwa)</a>
+        <a href="#hungary" class="toc-link">3. Cultivation in Hungary (Dfb)</a>
+        <a href="#comparison" class="toc-link">4. Climate Comparison Data</a>
+    </aside>
+
+</body>
+</html>
