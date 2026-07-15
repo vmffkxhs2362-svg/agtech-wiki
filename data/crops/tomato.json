@@ -4,6 +4,12 @@
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Cherry-Tomatoes-Greenhouse-Sitia-Crete-Greece-3.jpg",
     "image_caption": "High-wire Greenhouse Tomato Cultivation (Wikimedia Commons)",
     "description": "Comprehensive engineering data for greenhouse tomato climate control, crop steering, and fertigation.",
+    "taxonomy": {
+        "family": "Solanaceae (가지과)",
+        "genus": "Solanum (가지속)",
+        "species": "Solanum lycopersicum",
+        "origin": "South America"
+    },
     "overview": "The tomato is the most extensively grown greenhouse crop globally. It serves as the primary model organism for Controlled Environment Agriculture (CEA). Mastering tomato cultivation requires deep engineering precision, specifically the manipulation of temperature differentials (DIF) and Vapor Pressure Deficit (VPD) to 'steer' the plant between vegetative (leafy) and generative (fruiting) growth phases.",
     
     "climate_strategy": [

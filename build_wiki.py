@@ -34,11 +34,13 @@ def build_crop_page(template, data, nav_html):
         </figure>
         """
         
+    tax = data.get('taxonomy', {})
     content_html += f"""
         <div class="metadata">
-            <span>📚 Crop Family: Solanaceae (Mock)</span>
-            <span>⏱️ Last Updated: 2026-07-15</span>
-            <span>✍️ Contributors: AgriAtlas Automation</span>
+            <span>📚 Family: {tax.get('family', 'N/A')}</span>
+            <span>🌱 Genus: {tax.get('genus', 'N/A')}</span>
+            <span>🧬 Species: {tax.get('species', 'N/A')}</span>
+            <span>🌍 Origin: {tax.get('origin', 'N/A')}</span>
         </div>
         
         <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
@@ -212,8 +214,9 @@ def generate_search_index(crops):
             "url": f"{crop['id']}.html",
             "desc": crop.get('description', '')
         })
-    with open(os.path.join(OUT_DIR, "search_index.json"), "w", encoding="utf-8") as f:
-        json.dump(search_data, f, ensure_ascii=False)
+    # Save as JS to avoid CORS file:/// blocks when running locally
+    with open(os.path.join(OUT_DIR, "search_index.js"), "w", encoding="utf-8") as f:
+        f.write(f"const searchIndex = {json.dumps(search_data, ensure_ascii=False)};")
 
 def main():
     with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
@@ -240,7 +243,7 @@ def main():
     
     # Generate search index
     generate_search_index(crops_data)
-    print("Generated: search_index.json")
+    print("Generated: search_index.js")
     
 if __name__ == "__main__":
     main()

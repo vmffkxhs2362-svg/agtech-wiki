@@ -4,6 +4,12 @@
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg/960px-Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg",
     "image_caption": "Greenhouse Strawberry Cultivation",
     "description": "Precision climate control and fertigation strategies for winter and day-neutral strawberries.",
+    "taxonomy": {
+        "family": "Rosaceae (장미과)",
+        "genus": "Fragaria (딸기속)",
+        "species": "Fragaria × ananassa",
+        "origin": "Europe (hybrid)"
+    },
     "overview": "Strawberries are high-value soft fruits that require meticulous climate control to prevent fungal diseases (like Botrytis) and ensure optimal fruit set. Unlike tomatoes, strawberries prefer much cooler temperatures and have different photoperiod requirements (Short-day vs Day-neutral).",
     "climate_strategy": [
         {

@@ -393,9 +393,10 @@
         </figure>
         
         <div class="metadata">
-            <span>📚 Crop Family: Solanaceae (Mock)</span>
-            <span>⏱️ Last Updated: 2026-07-15</span>
-            <span>✍️ Contributors: AgriAtlas Automation</span>
+            <span>📚 Family: Solanaceae (가지과)</span>
+            <span>🌱 Genus: Solanum (가지속)</span>
+            <span>🧬 Species: Solanum lycopersicum</span>
+            <span>🌍 Origin: South America</span>
         </div>
         
         <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
@@ -503,19 +504,14 @@
         
 </div>
 
+<script src="search_index.js"></script>
 <script>
     // Mobile Menu Toggle
     function toggleMobileMenu() {
         document.getElementById('mobileSidebar').classList.toggle('open');
     }
 
-    // Client-side Search Engine
-    let searchIndex = [];
-    
-    fetch('search_index.json')
-        .then(response => response.json())
-        .then(data => { searchIndex = data; })
-        .catch(err => console.error("Search index not found (only works if running via local server)"));
+    // Client-side Search Engine (uses searchIndex variable from search_index.js)
 
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
