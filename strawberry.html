@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | AgriAtlas</title>
-    <meta name="description" content="Global Database for CEA Engineering">
+    <title>Strawberry (Fragaria × ananassa) | AgriAtlas</title>
+    <meta name="description" content="Precision climate control and fertigation strategies for winter and day-neutral strawberries.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -290,7 +290,7 @@
         <div class="nav-group">
             <div class="nav-title">📚 Encyclopedia</div>
             <!-- Alphabetical Crop List -->
-            <a href="strawberry.html" class="nav-link">Strawberry (Fragaria × ananassa)</a>
+            <a href="strawberry.html" class="nav-link active">Strawberry (Fragaria × ananassa)</a>
             <a href="tomato.html" class="nav-link">Tomato (Solanum lycopersicum)</a>
             
             
@@ -303,37 +303,97 @@
     <main>
         
         <div class="breadcrumb">
-            <span style="color: var(--text-muted);">AgriAtlas Home</span>
+            <a href="index.html" style="color: var(--primary); text-decoration: none;">AgriAtlas</a> 
+            <span>/</span> <a href="#" style="color: var(--primary); text-decoration: none;">Crops</a> 
+            <span>/</span> <span style="color: var(--text-muted);">Strawberry (Fragaria × ananassa)</span>
         </div>
         
-        <h1 id="overview">Welcome to AgriAtlas</h1>
-        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
-            The world's most advanced, data-driven engineering repository for Controlled Environment Agriculture (CEA).
-            Select a crop from the navigation menu to explore deep-dive engineering strategies, or browse the grid below.
-        </p>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+        <h1 id="overview">Strawberry (Fragaria × ananassa)</h1>
     
-            <a href="strawberry.html" style="text-decoration: none; color: inherit; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s;">
-                <div style="height: 150px; background: #000; overflow: hidden;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg/960px-Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
-                </div>
-                <div style="padding: 1.5rem;">
-                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary);">Strawberry (Fragaria × ananassa)</h3>
-                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">Precision climate control and fertigation strategies for winter and day-neutral strawberries....</p>
-                </div>
-            </a>
+        <figure style="margin: 0 0 2rem 0; width: 100%;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg/960px-Garden_strawberry_%28Fragaria_%C3%97_ananassa%29_single2.jpg" alt="Greenhouse Strawberry Cultivation" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border);">
+            <figcaption style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">Greenhouse Strawberry Cultivation</figcaption>
+        </figure>
         
-            <a href="tomato.html" style="text-decoration: none; color: inherit; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s;">
-                <div style="height: 150px; background: #000; overflow: hidden;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Cherry-Tomatoes-Greenhouse-Sitia-Crete-Greece-3.jpg" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
-                </div>
-                <div style="padding: 1.5rem;">
-                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary);">Tomato (Solanum lycopersicum)</h3>
-                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">Comprehensive engineering data for greenhouse tomato climate control, crop steering, and fertigation...</p>
-                </div>
-            </a>
+        <div class="metadata">
+            <span>📚 Crop Family: Solanaceae (Mock)</span>
+            <span>⏱️ Last Updated: 2026-07-15</span>
+            <span>✍️ Contributors: AgriAtlas Automation</span>
         </div>
+        
+        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
+            Strawberries are high-value soft fruits that require meticulous climate control to prevent fungal diseases (like Botrytis) and ensure optimal fruit set. Unlike tomatoes, strawberries prefer much cooler temperatures and have different photoperiod requirements (Short-day vs Day-neutral).
+        </p>
+    
+            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="climate-strategy">Global Climate Strategy</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
+        
+                <div class="content-box" style="margin-bottom: 0;">
+                    <h3 style="margin-top: 0; color: var(--primary); font-size: 1.2rem;">🌍 South Korea (RDA Smart Farm)</h3>
+                    <p style="color: #f8fafc; font-size: 0.95rem; line-height: 1.5;">Dominates the winter market (Dec-Apr) using single-span plastic houses. Heating is minimal, relying on multi-layer thermal screens. The primary challenge is extreme humidity at night, requiring precision dehumidification or morning heating bursts to prevent Botrytis cinerea.</p>
+                    <span style="font-size: 0.85rem; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; display: inline-block; margin-top: 1rem;">⚙️ Tech: Medium (Multi-layer thermal screens, forced-air heaters)</span>
+                </div>
+            
+                <div class="content-box" style="margin-bottom: 0;">
+                    <h3 style="margin-top: 0; color: var(--primary); font-size: 1.2rem;">🌍 The Netherlands (WUR)</h3>
+                    <p style="color: #f8fafc; font-size: 0.95rem; line-height: 1.5;">Year-round production in high-tech glasshouses using supplemental LED lighting (Red/Blue/Far-Red spectrums). Precise VPD control ensures calcium transport to the fruit, preventing tip-burn on leaves and calyx.</p>
+                    <span style="font-size: 0.85rem; color: var(--text-muted); background: rgba(0,0,0,0.3); padding: 0.3rem 0.6rem; border-radius: 6px; display: inline-block; margin-top: 1rem;">⚙️ Tech: High (LEDs, active dehumidification, elevated gutters)</span>
+                </div>
+            </div>
+            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="crop-steering">Crop Steering Parameters</h2>
+            <p style="color: #cbd5e1; margin-bottom: 2rem;">Strawberry steering focuses heavily on balancing the crown size (vegetative) with truss development (generative) using temperature strategies.</p>
+            
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 3rem; background: rgba(30, 41, 59, 0.5); border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+                <thead>
+                    <tr style="background: rgba(0,0,0,0.3);">
+                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: var(--text-muted);">Parameter</th>
+                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #86efac;">🌱 Vegetative Target (Leaf Growth)</th>
+                        <th style="padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); color: #fca5a5;">🍅 Generative Target (Fruit Growth)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">Temperature DIF</td>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">Higher average daily temperature (ADT), Warmer nights (12-14°C)</td>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">Strong DIF. Cool nights (8-10°C) to induce flowering</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">VPD (kPa)</td>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">0.4 - 0.6 kPa (Encourages rapid leaf expansion)</td>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">0.8 - 1.0 kPa (Enhances transpiration and calcium uptake)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: bold; color: var(--primary);">Irrigation Strategy</td>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">Frequent, lower EC (1.2 mS/cm) to build plant volume</td>
+                        <td style="padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #f8fafc;">Higher EC (1.8 - 2.0 mS/cm) to improve fruit flavor (Brix)</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="fertigation">Fertigation Strategy</h2>
+            <p style="color: #cbd5e1; margin-bottom: 1.5rem;">Strawberries are extremely sensitive to salinity (high EC) compared to tomatoes.</p>
+            
+            <div style="background: rgba(255,255,255,0.03); border-left: 4px solid var(--primary); padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 8px 8px 0;">
+                <h4 style="margin-top: 0; color: #86efac;">Phase 1: Vegetative</h4>
+                <p style="margin-bottom: 0; color: #f8fafc;">Balanced N-P-K. Target EC: 1.2 mS/cm. Keep ammonium levels low to prevent pH drops in the substrate.</p>
+            </div>
+            
+            <div style="background: rgba(255,255,255,0.03); border-left: 4px solid #fca5a5; padding: 1.5rem; margin-bottom: 3rem; border-radius: 0 8px 8px 0;">
+                <h4 style="margin-top: 0; color: #fca5a5;">Phase 2: Generative (Fruiting)</h4>
+                <p style="margin-bottom: 0; color: #f8fafc;">Increase Potassium (K) and Calcium (Ca) for fruit firmness. Target EC: 1.5 - 1.8 mS/cm. Maintain high drainage fraction (30%+) to prevent salt accumulation.</p>
+            </div>
+        
+        <div id="calculators" style="background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(56,189,248,0.1) 100%); border: 1px solid rgba(16,185,129,0.3); padding: 2.5rem; border-radius: 12px; text-align: center; margin-bottom: 2rem;">
+            <h2 style="margin-top: 0; color: white; font-size: 1.8rem;">Ready to steer your crop?</h2>
+            <p style="color: #cbd5e1; font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                AgriAtlas provides the theory, but every greenhouse is unique. Use our precise engineering calculators to hit these target VPD and Temperature DIF values based on your specific facility's U-Value and heating capacity.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://smartfarm.inwoovation.com/vpd.html" target="_blank" style="display: inline-block; background: var(--primary); color: #0f172a; font-weight: bold; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-size: 1.1rem; transition: transform 0.2s;">Run VPD Calculator</a>
+                <a href="https://smartfarm.inwoovation.com/heat_loss.html" target="_blank" style="display: inline-block; background: transparent; border: 2px solid var(--accent-green); color: var(--accent-green); font-weight: bold; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-size: 1.1rem; transition: transform 0.2s;">Calculate Heat Loss</a>
+            </div>
+        </div>
+    
     </main>
 
     <aside class="sidebar-right">
