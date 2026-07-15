@@ -44,11 +44,11 @@
     "references": [
         {
             "id": 1,
-            "text": "RDA (Rural Development Administration, Korea). Smart Farm Strawberry Cultivation Manual.",
-            "original_title": "농업기술길잡이 40 - 딸기",
-            "publisher": "Rural Development Administration, Republic of Korea",
-            "gov_id": "ISBN 979-11-290-1673-7",
-            "link": "references/KR_RDA_strawberry_smartfarm-manual_2022.pdf"
+            "text": "Lee, I. H., et al. (2013). Establishing Mother Plant Planting Date for Uniform Strawberry Plug Seedling Production. Report of Agricultural Science and Technology Development, Chungnam ARES.",
+            "original_title": "딸기 균일묘 생산을 위한 모주 정식시기 구명",
+            "publisher": "Chungnam Agricultural Research and Extension Services",
+            "gov_id": "Chungnam ARES Report 2013 (p. 655-658)",
+            "link": "references/KR_CN_strawberry_mother-plant-timing_2013.pdf"
         },
         {
             "id": 2,
