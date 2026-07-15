@@ -19,7 +19,7 @@
         },
         {
             "region": "South Korea (NFT Greenhouse)",
-            "strategy": "Cultivated in hydroponic NFT (Nutrient Film Technique) gutters. Relies on shading screens and evaporative cooling pads to keep root-zone temperatures below 20°C in summer, preventing root rot and bolting.",
+            "strategy": "Cultivated in hydroponic NFT (Nutrient Film Technique) gutters. Relies on shading screens and evaporative cooling pads to keep root-zone temperatures below 20°C in summer, preventing root rot and bolting. <sup id=\"cite-1\"><a href=\"#ref-1\" style=\"color: var(--primary); text-decoration: none;\">[1]</a></sup>",
             "tech_level": "Medium/High (NFT gutters, cooling pads, shading systems)"
         }
     ],
@@ -48,7 +48,7 @@
             "original_title": "농업기술길잡이 36 - 상추 (제5장 수경재배 기술, p. 115-122)",
             "publisher": "Rural Development Administration, Republic of Korea",
             "gov_id": "ISBN 979-11-290-1669-0",
-            "link": "https://www.nongsaro.go.kr/"
+            "link": "references/KR_RDA_lettuce_manual_2023.pdf"
         }
     ]
 }

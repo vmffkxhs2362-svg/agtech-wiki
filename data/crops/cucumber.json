@@ -14,7 +14,7 @@
     "climate_strategy": [
         {
             "region": "South Korea (RDA Smart Farm)",
-            "strategy": "Typically grown in plastic multi-span greenhouses. Requires strong night heating (15-18°C) to prevent downy mildew during winter. Focus is on air circulation to reduce boundary layer humidity around the dense canopy.",
+            "strategy": "Typically grown in plastic multi-span greenhouses. Requires strong night heating (15-18°C) to prevent downy mildew during winter. Focus is on air circulation to reduce boundary layer humidity around the dense canopy. <sup id=\"cite-1\"><a href=\"#ref-1\" style=\"color: var(--primary); text-decoration: none;\">[1]</a></sup>",
             "tech_level": "Medium (Forced-air heaters, air circulation fans, drip irrigation)"
         },
         {
@@ -48,7 +48,7 @@
             "original_title": "농업기술길잡이 48 - 오이 (제6장 수경재배 및 토양관리, p. 135-141)",
             "publisher": "Rural Development Administration, Republic of Korea",
             "gov_id": "ISBN 979-11-290-1681-2",
-            "link": "https://www.nongsaro.go.kr/"
+            "link": "https://www.nongsaro.go.kr/portal/ps/psb/psbx/cropEbookMain.ps?menuId=PS65290&cropsEbookNm=%EC%98%A4%EC%9D%B4"
         }
     ]
 }
