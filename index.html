@@ -362,17 +362,6 @@
         </div>
     </header>
 
-    <!-- Google Translate Script -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 <div class="container">
     <nav class="sidebar-left" id="mobileSidebar">
         <div class="nav-group">
@@ -424,29 +413,7 @@
         </div>
     </main>
 
-    <aside class="sidebar-right">
-        <!-- Ad Reservation Space at the VERY TOP -->
-        <div class="ad-placeholder">
-            Advertisement<br>Medium Rectangle (300x250)
-        </div>
-
-        <!-- References / Footnotes -->
-        <div class="toc-title" style="margin-bottom: 1rem; color: #cbd5e1; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">References & Citations</div>
-        <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 0.5rem;">
-            <div style="margin-bottom: 1rem;" id="ref-1">
-                <a href="#cite-1" style="color: var(--primary); text-decoration: none;">^</a> <span style="color: var(--primary); font-weight: bold;">[1]</span> Wageningen University & Research (WUR). <i style="color: #cbd5e1;">"Tomato Crop Steering Strategies in High-Wire Systems."</i> (2025) 
-                <a href="https://www.wur.nl/en/Research-Results/Research-Institutes/plant-research/Greenhouse-Horticulture.htm" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; margin-left: 0.3rem;">[Link ↗]</a>
-            </div>
-            <div style="margin-bottom: 1rem;" id="ref-2">
-                <a href="#cite-2" style="color: var(--primary); text-decoration: none;">^</a> <span style="color: var(--primary); font-weight: bold;">[2]</span> Priva Climate Control. <i style="color: #cbd5e1;">"VPD Optimization and Plant Balance."</i>
-                <a href="https://www.priva.com/discover-priva/knowledge-center/vpd" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; margin-left: 0.3rem;">[Link ↗]</a>
-            </div>
-            <div style="margin-bottom: 1rem;" id="ref-3">
-                <a href="#cite-3" style="color: var(--primary); text-decoration: none;">^</a> <span style="color: var(--primary); font-weight: bold;">[3]</span> Almería AgTech Journal. <i style="color: #cbd5e1;">"Passive Cooling in Mediterranean Greenhouses."</i> (Vol 42).
-                <a href="https://www.researchgate.net/publication/320573950_Greenhouse_cooling_in_the_Mediterranean_region" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; margin-left: 0.3rem;">[Link ↗]</a>
-            </div>
-        </div>
-    </aside>
+    
 </div>
 
 <script>
@@ -501,6 +468,17 @@
         }
     });
 </script>
+
+<!-- Google Translate Script (Loaded Asynchronously at the bottom) -->
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
 </body>
 </html>

@@ -127,12 +127,37 @@ def build_crop_page(template, data, nav_html):
             </div>
         </div>
     """
+
+    sidebar_html = ""
+    if 'references' in data and len(data['references']) > 0:
+        sidebar_html = """
+    <aside class="sidebar-right">
+        <div style="background: rgba(0,0,0,0.5); border: 1px dashed var(--border); border-radius: 8px; padding: 1rem; text-align: center; margin-bottom: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+            <div style="width: 300px; height: 250px; background: rgba(255,255,255,0.02); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                Advertisement<br>(300x250)
+            </div>
+        </div>
+        <div class="toc-title" style="margin-bottom: 1rem; color: #cbd5e1; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">References & Citations</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 0.5rem;">
+        """
+        for ref in data['references']:
+            sidebar_html += f"""
+            <div style="margin-bottom: 1rem;" id="ref-{ref['id']}">
+                <a href="#cite-{ref['id']}" style="color: var(--primary); text-decoration: none;">^</a> <span style="color: var(--primary); font-weight: bold;">[{ref['id']}]</span> {ref['text']} 
+                <a href="{ref['link']}" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; margin-left: 0.3rem;">[Link ↗]</a>
+            </div>
+            """
+        sidebar_html += """
+        </div>
+    </aside>
+        """
         
     output = template.replace("{{TITLE}}", f"{data['title']} | AgriAtlas")
     output = output.replace("{{DESC}}", data.get('description', ''))
     output = output.replace("{{OG_IMAGE}}", data.get('image_url', ''))
     output = output.replace("{{CONTENT}}", content_html)
     output = output.replace("{{CROP_NAVIGATION}}", nav_html)
+    output = output.replace("{{RIGHT_SIDEBAR}}", sidebar_html)
     
     with open(os.path.join(OUT_DIR, f"{data['id']}.html"), "w", encoding="utf-8") as f:
         f.write(output)
@@ -174,6 +199,7 @@ def build_index_page(template, crops, nav_html):
     output = output.replace("{{OG_IMAGE}}", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg")
     output = output.replace("{{CONTENT}}", content_html)
     output = output.replace("{{CROP_NAVIGATION}}", nav_html)
+    output = output.replace("{{RIGHT_SIDEBAR}}", "")
     
     with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(output)

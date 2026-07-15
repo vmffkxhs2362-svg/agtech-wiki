@@ -35,7 +35,24 @@
 
     "fertigation": {
         "intro": "Nutrient solutions must shift dynamically based on the steering phase.",
-        "vegetative_phase": "Higher Nitrogen (N) relative to Potassium (K) to support leaf expansion. Target root-zone EC: 2.5 - 3.0 mS/cm.",
-        "generative_phase": "Higher Potassium (K) to support fruit bulking and sugar transport. Target root-zone EC: 4.0 - 5.0 mS/cm."
-    }
+        "vegetative_phase": "Higher Nitrogen (N) relative to Potassium (K). Target EC: 2.5 - 3.0 mS/cm. Important to maintain robust root system before fruit load increases.",
+        "generative_phase": "Higher Potassium (K) to Nitrogen (N) ratio. Target EC: 3.5 - 4.5+ mS/cm. High EC induces mild water stress, driving sugars into the fruit to increase Brix (flavor)."
+    },
+    "references": [
+        {
+            "id": 1,
+            "text": "Wageningen University & Research (WUR). Tomato Crop Steering Strategies in High-Wire Systems. (2025)",
+            "link": "https://www.wur.nl/en/Research-Results/Research-Institutes/plant-research/Greenhouse-Horticulture.htm"
+        },
+        {
+            "id": 2,
+            "text": "Priva Climate Control. VPD Optimization and Plant Balance.",
+            "link": "https://www.priva.com"
+        },
+        {
+            "id": 3,
+            "text": "MDPI Agronomy. Passive Cooling in Mediterranean Greenhouses.",
+            "link": "https://www.mdpi.com/journal/agronomy"
+        }
+    ]
 }
