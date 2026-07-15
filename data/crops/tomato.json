@@ -48,17 +48,20 @@
         {
             "id": 1,
             "text": "Wageningen University & Research (WUR). Tomato Crop Steering Strategies in High-Wire Systems. (2025)",
-            "link": "https://www.wur.nl/en/Research-Results/Research-Institutes/plant-research/Greenhouse-Horticulture.htm"
+            "link": "https://www.wur.nl",
+            "path_guide": "wur.nl/en > Research & Results > Search 'High-Wire Tomato Steering'"
         },
         {
             "id": 2,
             "text": "Priva Climate Control. VPD Optimization and Plant Balance.",
-            "link": "https://www.priva.com"
+            "link": "https://www.priva.com",
+            "path_guide": "priva.com > Discover Priva > Knowledge Center > Search 'Vapor Pressure Deficit'"
         },
         {
             "id": 3,
             "text": "MDPI Agronomy. Passive Cooling in Mediterranean Greenhouses.",
-            "link": "https://www.mdpi.com/journal/agronomy"
+            "link": "https://www.mdpi.com/journal/agronomy",
+            "path_guide": "mdpi.com > Search 'Greenhouse cooling in the Mediterranean region' > Article ID: 966"
         }
-    ]
+     ]
 }

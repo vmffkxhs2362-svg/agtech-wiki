@@ -143,10 +143,12 @@ def build_crop_page(template, data, nav_html):
         <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 0.5rem;">
         """
         for ref in data['references']:
+            path_guide_html = f"<div style='font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; padding-left: 0.5rem; border-left: 2px solid var(--border);'>📍 Path: {ref['path_guide']}</div>" if 'path_guide' in ref else ""
             sidebar_html += f"""
             <div style="margin-bottom: 1rem;" id="ref-{ref['id']}">
                 <a href="#cite-{ref['id']}" style="color: var(--primary); text-decoration: none;">^</a> <span style="color: var(--primary); font-weight: bold;">[{ref['id']}]</span> {ref['text']} 
                 <a href="{ref['link']}" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; margin-left: 0.3rem;">[Link ↗]</a>
+                {path_guide_html}
             </div>
             """
         sidebar_html += """
