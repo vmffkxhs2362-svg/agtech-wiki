@@ -45,20 +45,20 @@
         {
             "id": 1,
             "text": "RDA (Rural Development Administration, Korea). Smart Farm Strawberry Cultivation Manual.",
-            "link": "https://www.nongsaro.go.kr",
-            "path_guide": "nongsaro.go.kr > 영농기술 > 농업기술도서 > 검색 '딸기 스마트팜'"
+            "link": "https://www.nongsaro.go.kr/portal/portal/ps/psb/psbo/farmManualLst.ps?menuId=PS00067",
+            "path_guide": "농사로 > 영농기술 > 농업기술도서 > 품목별 검색 '딸기'"
         },
         {
             "id": 2,
             "text": "Wageningen University & Research. LED Lighting Strategies for Winter Strawberries.",
-            "link": "https://www.wur.nl",
-            "path_guide": "wur.nl/en > Research & Results > Search 'LED strawberry greenhouse'"
+            "link": "https://www.wur.nl/en/Research-Results/Research-Institutes/plant-research/Greenhouse-Horticulture.htm",
+            "path_guide": "WUR Greenhouse Horticulture Research Portal"
         },
         {
             "id": 3,
             "text": "Grodan. Precision Irrigation for Substrate Strawberries.",
-            "link": "https://www.grodan.com",
-            "path_guide": "grodan.com > Crops > Strawberry > 'Food Forward' Technical Report"
+            "link": "https://www.grodan.com/crops/strawberry/",
+            "path_guide": "Grodan Crops > Strawberry Solutions Hub"
         }
     ]
 }
