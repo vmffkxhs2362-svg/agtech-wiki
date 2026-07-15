@@ -143,12 +143,17 @@ def build_crop_page(template, data, nav_html):
         <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 0.5rem;">
         """
         for ref in data['references']:
-            path_guide_html = f"<div style='font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; padding-left: 0.5rem; border-left: 2px solid var(--border);'>📍 Path: {ref['path_guide']}</div>" if 'path_guide' in ref else ""
             sidebar_html += f"""
-            <div style="margin-bottom: 1rem;" id="ref-{ref['id']}">
-                <a href="#cite-{ref['id']}" style="color: var(--primary); text-decoration: none;">^</a> <span style="color: var(--primary); font-weight: bold;">[{ref['id']}]</span> {ref['text']} 
-                <a href="{ref['link']}" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.8rem; margin-left: 0.3rem;">[Link ↗]</a>
-                {path_guide_html}
+            <div style="margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05);" id="ref-{ref['id']}">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; gap: 0.5rem;">
+                    <span style="font-weight: 600; color: #cbd5e1;"><a href="#cite-{ref['id']}" style="color: var(--primary); text-decoration: none; font-weight: bold; margin-right: 0.3rem;">^</a> [{ref['id']}] {ref['text']}</span>
+                    <a href="{ref['link']}" target="_blank" style="color: var(--primary); text-decoration: none; font-size: 0.75rem; background: rgba(56,189,248,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid rgba(56,189,248,0.2); white-space: nowrap;">[Link ↗]</a>
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; padding-left: 0.6rem; border-left: 2px solid var(--border); margin-top: 0.5rem;">
+                    <div>📝 Original: <i style="color: #cbd5e1;">{ref.get('original_title', 'N/A')}</i></div>
+                    <div>🏢 Publisher: {ref.get('publisher', 'N/A')}</div>
+                    <div>🆔 ID: <span style="font-family: monospace; color: var(--primary);">{ref.get('gov_id', 'N/A')}</span></div>
+                </div>
             </div>
             """
         sidebar_html += """

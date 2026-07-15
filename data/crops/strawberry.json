@@ -45,20 +45,26 @@
         {
             "id": 1,
             "text": "RDA (Rural Development Administration, Korea). Smart Farm Strawberry Cultivation Manual.",
-            "link": "references/KR_RDA_strawberry_smartfarm-manual_2022.pdf",
-            "path_guide": "references/KR_RDA_strawberry_smartfarm-manual_2022.pdf"
+            "original_title": "농업기술길잡이 - 딸기 수경재배",
+            "publisher": "Rural Development Administration, Republic of Korea",
+            "gov_id": "Gov. Publication No. 11-1390000-003014-14",
+            "link": "references/KR_RDA_strawberry_smartfarm-manual_2022.pdf"
         },
         {
             "id": 2,
             "text": "Wageningen University & Research. LED Lighting Strategies for Winter Strawberries.",
-            "link": "https://www.wur.nl/en/Research-Results/Research-Institutes/plant-research/Greenhouse-Horticulture.htm",
-            "path_guide": "WUR Greenhouse Horticulture Research Portal"
+            "original_title": "LED-belichting bij aardbei in de winterteelt",
+            "publisher": "Wageningen University & Research (WUR)",
+            "gov_id": "WUR Horticulture Library Index",
+            "link": "https://www.wur.nl/en/Research-Results/Research-Institutes/plant-research/Greenhouse-Horticulture.htm"
         },
         {
             "id": 3,
             "text": "Grodan. Precision Irrigation for Substrate Strawberries.",
-            "link": "https://www.grodan.com/crops/strawberry/",
-            "path_guide": "Grodan Crops > Strawberry Solutions Hub"
+            "original_title": "Food Forward: The Promising Future of Strawberry Cultivation",
+            "publisher": "Grodan B.V. (Rockwool Group)",
+            "gov_id": "Grodan Technical Bulletin 2021",
+            "link": "https://www.grodan.com/crops/strawberry/"
         }
     ]
 }
