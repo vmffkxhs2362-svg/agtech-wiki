@@ -1,0 +1,12 @@
+[AgriAtlas - References Archiving System]
+
+This is a placeholder for:
+File: KR_RDA_strawberry_smartfarm-manual_2022.pdf
+Title: RDA (Rural Development Administration, Korea) - Smart Farm Strawberry Cultivation Manual
+
+---
+To deploy this document:
+1. Download the official '농업기술길잡이 - 딸기' or '스마트팜 딸기 재배 매뉴얼' PDF from the Rural Development Administration (nongsaro.go.kr / smartfarmkorea.net).
+2. Save/Overwrite this placeholder file inside the 'references/' folder with the exact filename:
+   'KR_RDA_strawberry_smartfarm-manual_2022.pdf'
+3. Push to the remote repository. The file will then open directly in the user's browser.

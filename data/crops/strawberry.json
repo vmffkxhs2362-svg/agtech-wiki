@@ -45,8 +45,8 @@
         {
             "id": 1,
             "text": "RDA (Rural Development Administration, Korea). Smart Farm Strawberry Cultivation Manual.",
-            "link": "https://www.smartfarmkorea.net/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_000000000051&menuId=040201",
-            "path_guide": "스마트팜코리아 > 자료실 > 재배가이드"
+            "link": "references/KR_RDA_strawberry_smartfarm-manual_2022.pdf",
+            "path_guide": "references/KR_RDA_strawberry_smartfarm-manual_2022.pdf"
         },
         {
             "id": 2,
