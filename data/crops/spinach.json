@@ -56,5 +56,19 @@
     "Ca": 120,
     "Mg": 45,
     "Fe": 3.0
+  },
+  "cross_crop_benchmarks": {
+    "dli_requirement_level": "Moderate (14-18 mol/m²/day)",
+    "ec_tolerance_range": "Moderate (1.4 - 1.8 dS/m)",
+    "shared_pathogens": [
+      "Peronospora farinosa f. sp. spinaciae",
+      "Pythium Root Rot"
+    ],
+    "companion_compatibility": [
+      "Lettuce",
+      "Strawberry"
+    ],
+    "calcium_demand": "High (Leaf Tip-burn & Oxalate Steering)",
+    "last_updated": "2026-08-05"
   }
 }

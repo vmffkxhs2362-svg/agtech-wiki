@@ -127,6 +127,33 @@ def build_page(template, data, crop_nav_html, topic_nav_html):
             </div>
         """
 
+    # Section 5: Cross-Crop Comparative Benchmarks & Shared Risk Matrix
+    if 'cross_crop_benchmarks' in data:
+        ccb = data['cross_crop_benchmarks']
+        pathogens_str = ", ".join(ccb.get('shared_pathogens', []))
+        companions_str = ", ".join(ccb.get('companion_compatibility', []))
+        content_html += f"""
+            <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="cross-crop-benchmarks">Cross-Crop Benchmarks & Companion Risk Matrix</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
+                <div class="content-box" style="margin-bottom: 0;">
+                    <h3 style="margin-top: 0; color: var(--primary); font-size: 1.1rem;">📊 Comparative Physiological Demands</h3>
+                    <ul style="color: #f8fafc; font-size: 0.95rem; line-height: 1.8; margin-bottom: 0; padding-left: 1.2rem;">
+                        <li><strong>DLI Requirement Level:</strong> {ccb.get('dli_requirement_level', '')}</li>
+                        <li><strong>EC Tolerance Range:</strong> {ccb.get('ec_tolerance_range', '')}</li>
+                        <li><strong>Calcium Demand / Risk:</strong> {ccb.get('calcium_demand', '')}</li>
+                    </ul>
+                </div>
+                <div class="content-box" style="margin-bottom: 0;">
+                    <h3 style="margin-top: 0; color: #fca5a5; font-size: 1.1rem;">🛡️ Shared Pathogens & Spatial Companions</h3>
+                    <ul style="color: #f8fafc; font-size: 0.95rem; line-height: 1.8; margin-bottom: 0; padding-left: 1.2rem;">
+                        <li><strong>Shared Pathogen Risk:</strong> {pathogens_str}</li>
+                        <li><strong>Companion CEA Crops:</strong> {companions_str}</li>
+                        <li><strong>Encyclopedia Sync Date:</strong> {ccb.get('last_updated', '')}</li>
+                    </ul>
+                </div>
+            </div>
+        """
+
     # Calculators integration CTA
     content_html += f"""
         <div id="calculators" style="background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(56,189,248,0.1) 100%); border: 1px solid rgba(16,185,129,0.3); padding: 2.5rem; border-radius: 12px; text-align: center; margin-bottom: 2rem;">

@@ -45,5 +45,19 @@
       "publisher": "Elsevier",
       "gov_id": "DOI: 10.1016/j.indcrop.2021.113940"
     }
-  ]
+  ],
+  "cross_crop_benchmarks": {
+    "dli_requirement_level": "Moderate-High (14-18 mol/m²/day)",
+    "ec_tolerance_range": "Moderate (1.4 - 2.2 dS/m)",
+    "shared_pathogens": [
+      "Peronospora belbahrii (Downy Mildew)",
+      "Fusarium oxysporum f. sp. basilici"
+    ],
+    "companion_compatibility": [
+      "Tomato",
+      "Paprika"
+    ],
+    "calcium_demand": "High (Apical Tip-burn Risk)",
+    "last_updated": "2026-08-05"
+  }
 }
