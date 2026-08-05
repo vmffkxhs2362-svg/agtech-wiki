@@ -5,6 +5,7 @@ import glob
 TEMPLATE_PATH = "_wiki_template.html"
 CROPS_DIR = "data/crops/"
 TOPICS_DIR = "data/topics/"
+RESEARCH_DIR = "data/research/"
 OUT_DIR = "./"
 
 def generate_navigation(items, active_id):
@@ -334,7 +335,7 @@ def build_research_page(template, topics, crop_nav_html, topic_nav_html):
     with open(os.path.join(OUT_DIR, "research.html"), "w", encoding="utf-8") as f:
         f.write(output)
 
-def generate_search_index(crops, topics):
+def generate_search_index(crops, topics, research):
     search_data = []
     for crop in crops:
         search_data.append({
@@ -349,11 +350,20 @@ def generate_search_index(crops, topics):
         search_data.append({
             "title": topic['title'],
             "url": f"{topic['id']}.html",
-            "desc": topic.get('overview', topic.get('description', '')),
+            "desc": topic.get('description', ''),
+            "type": "Topic",
+            "badge": "🌱 Topic",
+            "keywords": f"{topic.get('taxonomy', {}).get('family', '')} {topic.get('taxonomy', {}).get('species', '')}"
+        })
+    for paper in research:
+        search_data.append({
+            "title": paper['title'],
+            "url": f"{paper['id']}.html",
+            "desc": paper.get('overview', paper.get('description', '')),
             "type": "Research Paper",
             "badge": "🔬 Research",
-            "published_date": topic.get('published_date', ''),
-            "keywords": f"{topic.get('taxonomy', {}).get('family', '')} {topic.get('taxonomy', {}).get('genus', '')} {topic.get('taxonomy', {}).get('species', '')} {topic.get('taxonomy', {}).get('origin', '')}"
+            "published_date": paper.get('published_date', ''),
+            "keywords": f"{paper.get('taxonomy', {}).get('family', '')} {paper.get('taxonomy', {}).get('genus', '')} {paper.get('taxonomy', {}).get('species', '')} {paper.get('taxonomy', {}).get('origin', '')}"
         })
     with open(os.path.join(OUT_DIR, "search_index.js"), "w", encoding="utf-8") as f:
         f.write(f"const searchIndex = {json.dumps(search_data, ensure_ascii=False)};")
@@ -375,6 +385,13 @@ def main():
     for tf in topic_files:
         with open(tf, "r", encoding="utf-8") as f:
             topics_data.append(json.load(f))
+
+    # Read all research JSONs
+    research_files = glob.glob(os.path.join(RESEARCH_DIR, "*.json"))
+    research_data = []
+    for rf in research_files:
+        with open(rf, "r", encoding="utf-8") as f:
+            research_data.append(json.load(f))
             
     crop_nav_html = generate_navigation(crops_data, active_id=None)
     topic_nav_html = generate_navigation(topics_data, active_id=None)
@@ -390,17 +407,22 @@ def main():
         active_topic_nav = generate_navigation(topics_data, active_id=data['id'])
         build_page(template, data, crop_nav_html, active_topic_nav)
         print(f"Built topic: {data['id']}.html")
+
+    # Build each research paper page
+    for data in research_data:
+        build_page(template, data, crop_nav_html, topic_nav_html)
+        print(f"Built research paper: {data['id']}.html")
         
     # Build index page
     build_index_page(template, crops_data, topics_data, crop_nav_html, topic_nav_html)
     print("Built: index.html (Homepage)")
 
     # Build research library page
-    build_research_page(template, topics_data, crop_nav_html, topic_nav_html)
+    build_research_page(template, research_data, crop_nav_html, topic_nav_html)
     print("Built: research.html (Scientific Research Library)")
     
     # Generate search index
-    generate_search_index(crops_data, topics_data)
+    generate_search_index(crops_data, topics_data, research_data)
     print("Generated: search_index.js")
     
 if __name__ == "__main__":
