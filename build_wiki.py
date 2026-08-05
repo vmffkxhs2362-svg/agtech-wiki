@@ -214,25 +214,19 @@ def build_index_page(template, crops, topics, crop_nav_html, topic_nav_html):
     content_html += f"""
         </div>
         
-        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">🌱 Methodologies & Topics</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+        <h2 style="color: white; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem;" id="research">🔬 Scientific Research Library</h2>
+        <p style="color: #cbd5e1; margin-bottom: 2rem; font-size: 1.05rem;">
+            Explore doctoral and peer-reviewed plant physiology, bioenergetics, and climate steering papers, cross-referenced with live datasets from NASA POWER, NCBI PubMed, NIH PubChem, and KEGG.
+        </p>
+
+        <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; text-align: center; margin-bottom: 3rem;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 1.6rem;">Peer-Reviewed Agricultural Science Papers</h3>
+            <p style="color: #cbd5e1; max-width: 650px; margin: 1rem auto 2rem auto; font-size: 1.05rem; line-height: 1.6;">
+                Articles are published in chronological order, integrating live meteorological telemetry, enzymatic reaction kinetics, and empirical crop steering matrices.
+            </p>
+            <a href="research.html" style="display: inline-block; background: var(--primary); color: #0f172a; font-weight: bold; padding: 1rem 2.5rem; border-radius: 8px; text-decoration: none; font-size: 1.1rem;">Explore All Research Papers →</a>
+        </div>
     """
-    
-    topics_sorted = sorted(topics, key=lambda x: x['title'])
-    for topic in topics_sorted:
-        content_html += f"""
-            <a href="{topic['id']}.html" style="text-decoration: none; color: inherit; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s;">
-                <div style="height: 150px; background: #000; overflow: hidden;">
-                    <img src="{topic.get('image_url', '')}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
-                </div>
-                <div style="padding: 1.5rem;">
-                    <h3 style="margin: 0 0 0.5rem 0; color: var(--primary);">{topic['title']}</h3>
-                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">{topic.get('description', '')[:100]}...</p>
-                </div>
-            </a>
-        """
-        
-    content_html += "</div>"
     
     output = template.replace("{{TITLE}}", "Home | AgriAtlas")
     output = output.replace("{{DESC}}", "Global Database for CEA Engineering")
