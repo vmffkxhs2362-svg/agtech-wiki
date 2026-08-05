@@ -1,6 +1,7 @@
 import json
 import os
 import glob
+from datetime import datetime
 
 TEMPLATE_PATH = "_wiki_template.html"
 CROPS_DIR = "data/crops/"
@@ -397,6 +398,39 @@ def generate_search_index(crops, topics, research):
     with open(os.path.join(OUT_DIR, "search_index.js"), "w", encoding="utf-8") as f:
         f.write(f"const searchIndex = {json.dumps(search_data, ensure_ascii=False)};")
 
+def generate_sitemap_and_robots(crops, topics, research):
+    base_url = "https://wiki.inwoovation.com"
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    
+    urls = [
+        f"  <url><loc>{base_url}/</loc><lastmod>{today_str}</lastmod><priority>1.0</priority></url>",
+        f"  <url><loc>{base_url}/research.html</loc><lastmod>{today_str}</lastmod><priority>0.9</priority></url>"
+    ]
+    
+    for c in crops:
+        cid = c.get('id') or c.get('crop_id')
+        urls.append(f"  <url><loc>{base_url}/{cid}.html</loc><lastmod>{today_str}</lastmod><priority>0.8</priority></url>")
+        
+    for r in research:
+        rid = r.get('id')
+        urls.append(f"  <url><loc>{base_url}/{rid}.html</loc><lastmod>{today_str}</lastmod><priority>0.8</priority></url>")
+        
+    sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{chr(10).join(urls)}
+</urlset>"""
+
+    robots_txt = f"""User-agent: *
+Allow: /
+
+Sitemap: {base_url}/sitemap.xml"""
+
+    with open(os.path.join(OUT_DIR, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(sitemap_xml)
+        
+    with open(os.path.join(OUT_DIR, "robots.txt"), "w", encoding="utf-8") as f:
+        f.write(robots_txt)
+
 def main():
     with open(TEMPLATE_PATH, "r", encoding="utf-8") as f:
         template = f.read()
@@ -459,5 +493,9 @@ def main():
     generate_search_index(crops_data, topics_data, research_data)
     print("Generated: search_index.js")
     
+    # Generate sitemap and robots.txt
+    generate_sitemap_and_robots(crops_data, topics_data, research_data)
+    print("Generated: sitemap.xml & robots.txt")
+
 if __name__ == "__main__":
     main()
