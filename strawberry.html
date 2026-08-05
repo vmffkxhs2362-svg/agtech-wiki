@@ -551,33 +551,43 @@
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
 
-    searchInput.addEventListener('input', function(e) {
-        const query = e.target.value.toLowerCase();
-        searchResults.innerHTML = '';
-        
-        if (query.length < 2) {
-            searchResults.style.display = 'none';
-            return;
-        }
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
 
-        const filtered = searchIndex.filter(item => 
-            item.title.toLowerCase().includes(query) || 
-            item.desc.toLowerCase().includes(query)
-        );
-
-        if (filtered.length > 0) {
-            searchResults.style.display = 'flex';
-            filtered.slice(0, 5).forEach(item => {
-                const a = document.createElement('a');
-                a.href = item.url;
-                a.className = 'search-result-item';
-                a.innerHTML = `<h4>${item.title}</h4><p>${item.desc.substring(0, 50)}...</p>`;
-                searchResults.appendChild(a);
+            const filtered = searchIndex.filter(item => {
+                const titleMatch = item.title.toLowerCase().includes(query);
+                const descMatch = item.desc.toLowerCase().includes(query);
+                const keywordMatch = (item.keywords || '').toLowerCase().includes(query);
+                const typeMatch = (item.type || '').toLowerCase().includes(query);
+                return titleMatch || descMatch || keywordMatch || typeMatch;
             });
-        } else {
-            searchResults.style.display = 'none';
-        }
-    });
+
+            if (filtered.length > 0) {
+                searchResults.style.display = 'flex';
+                filtered.slice(0, 6).forEach(item => {
+                    const a = document.createElement('a');
+                    a.href = item.url;
+                    a.className = 'search-result-item';
+                    const badgeHtml = `<span style="font-size: 0.7rem; font-weight: bold; background: rgba(56,189,248,0.2); color: var(--primary); padding: 0.15rem 0.4rem; border-radius: 4px; margin-right: 0.4rem;">${item.badge || '📄 Paper'}</span>`;
+                    a.innerHTML = `<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.3rem;">
+                        <h4 style="font-size: 0.95rem; margin: 0; color: white;">${badgeHtml}${item.title}</h4>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.4;">${item.desc.substring(0, 75)}...</p>`;
+                    searchResults.appendChild(a);
+                });
+            } else {
+                searchResults.style.display = 'flex';
+                searchResults.innerHTML = `<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem; text-align: center;">No matching research papers or crop guides found.</div>`;
+            }
+        });
+    }
 
     // Hide search results when clicking outside
     document.addEventListener('click', function(e) {

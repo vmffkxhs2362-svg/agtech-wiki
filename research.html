@@ -393,36 +393,21 @@
         </div>
         
         <h1 id="overview">🔬 Scientific Research Library</h1>
-        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
+        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2rem; line-height: 1.6;">
             Doctoral and peer-reviewed plant physiology, bioenergetics, and climate steering papers. Articles are published chronologically with complete NCBI PubMed DOIs, PubChem CIDs, and KEGG pathway maps.
         </p>
 
-        <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
-    
-            <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.2s;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 0.5rem;">
-                    <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3);">🗓️ Published: 2026-08-05 10:15:00 UTC</span>
-                    <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 600;">📚 4 Peer-Reviewed Citations</span>
-                </div>
-                
-                <h2 style="margin: 0.5rem 0 1rem 0; font-size: 1.8rem; color: white;">
-                    <a href="photorespiratory_nitrogen_kinetics.html" style="color: white; text-decoration: none;">Bioenergetic Modeling of Photorespiratory Nitrogen Flux & Stomatal Conductance</a>
-                </h2>
-                
-                <div style="display: flex; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; flex-wrap: wrap;">
-                    <span>🧬 Family: <strong style="color: #cbd5e1;">Solanaceae Bioenergetics</strong></span>
-                    <span>🔬 Genus: <strong style="color: #cbd5e1;">Enzymatic Kinetics (EC 1.7.1.1 / EC 6.3.1.2)</strong></span>
-                    <span>🌍 Dataset: <strong style="color: #cbd5e1;">Almería High-Tech CEA & NASA POWER Satellite Dataset</strong></span>
-                </div>
-
-                <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 1.5rem; font-size: 1.05rem;">
-                    This doctoral-level research paper establishes a biophysical and enzymatic model coupling leaf-to-air Vapor Pressure Deficit (VPD), mesophyll stomatal conductance (g_s), and photorespiratory ammonium (NH4+) recycling via the plastidic Glutamine Synthetase-Glutamate Synthase (GS-G...
-                </p>
-
-                <a href="photorespiratory_nitrogen_kinetics.html" style="display: inline-block; background: var(--primary); color: #0f172a; font-weight: bold; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-size: 0.95rem;">Read Full Research Paper →</a>
+        <!-- Live Research Search Filter Bar -->
+        <div style="margin-bottom: 2.5rem; background: var(--bg-surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <input type="text" id="researchFilterInput" placeholder="🔍 Filter papers by title, keyword, enzyme (EC), or PubMed DOI..." style="flex: 1; min-width: 280px; padding: 0.8rem 1.2rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white; outline: none; font-size: 1rem; font-family: 'Inter';">
             </div>
-        
-            <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.2s;">
+            <div id="filterCount" style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--primary); font-weight: 600;">Showing all 2 research papers</div>
+        </div>
+
+        <div id="researchList" style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
+    
+            <div class="research-card" data-search="care farming (치유농업) care farming (치유농업) is the therapeutic use of farming practices—including plant cultivation, animal care, and rural landscapes—to provide social, clinical, educational, or rehabilitative services. by merging agriculture with healthcare, it creates sustainable social enterprises that improve community well-being while utilizing the natural therapeutic benefits of nature. in high-tech controlled environment agriculture (cea), care farming utilizes barrier-free automation to expand accessibility. social care & health (사회복지 및 보건) green care (그린케어) care farming / social farming netherlands & western europe" style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.2s;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 0.5rem;">
                     <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3);">🗓️ Published: Recently Published</span>
                     <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 600;">📚 1 Peer-Reviewed Citations</span>
@@ -444,7 +429,32 @@
 
                 <a href="care_farming.html" style="display: inline-block; background: var(--primary); color: #0f172a; font-weight: bold; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-size: 0.95rem;">Read Full Research Paper →</a>
             </div>
+        
         </div>
+
+        <script>
+            const filterInput = document.getElementById('researchFilterInput');
+            const cards = document.querySelectorAll('.research-card');
+            const filterCount = document.getElementById('filterCount');
+
+            if (filterInput) {
+                filterInput.addEventListener('input', function(e) {
+                    const q = e.target.value.toLowerCase().trim();
+                    let visible = 0;
+                    cards.forEach(card => {
+                        const text = card.getAttribute('data-search') || '';
+                        if (!q || text.includes(q)) {
+                            card.style.display = 'block';
+                            visible++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    filterCount.textContent = `Showing ${visible} of ${cards.length} research papers`;
+                });
+            }
+        </script>
+    
     </main>
 
     
@@ -462,33 +472,43 @@
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
 
-    searchInput.addEventListener('input', function(e) {
-        const query = e.target.value.toLowerCase();
-        searchResults.innerHTML = '';
-        
-        if (query.length < 2) {
-            searchResults.style.display = 'none';
-            return;
-        }
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
 
-        const filtered = searchIndex.filter(item => 
-            item.title.toLowerCase().includes(query) || 
-            item.desc.toLowerCase().includes(query)
-        );
-
-        if (filtered.length > 0) {
-            searchResults.style.display = 'flex';
-            filtered.slice(0, 5).forEach(item => {
-                const a = document.createElement('a');
-                a.href = item.url;
-                a.className = 'search-result-item';
-                a.innerHTML = `<h4>${item.title}</h4><p>${item.desc.substring(0, 50)}...</p>`;
-                searchResults.appendChild(a);
+            const filtered = searchIndex.filter(item => {
+                const titleMatch = item.title.toLowerCase().includes(query);
+                const descMatch = item.desc.toLowerCase().includes(query);
+                const keywordMatch = (item.keywords || '').toLowerCase().includes(query);
+                const typeMatch = (item.type || '').toLowerCase().includes(query);
+                return titleMatch || descMatch || keywordMatch || typeMatch;
             });
-        } else {
-            searchResults.style.display = 'none';
-        }
-    });
+
+            if (filtered.length > 0) {
+                searchResults.style.display = 'flex';
+                filtered.slice(0, 6).forEach(item => {
+                    const a = document.createElement('a');
+                    a.href = item.url;
+                    a.className = 'search-result-item';
+                    const badgeHtml = `<span style="font-size: 0.7rem; font-weight: bold; background: rgba(56,189,248,0.2); color: var(--primary); padding: 0.15rem 0.4rem; border-radius: 4px; margin-right: 0.4rem;">${item.badge || '📄 Paper'}</span>`;
+                    a.innerHTML = `<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.3rem;">
+                        <h4 style="font-size: 0.95rem; margin: 0; color: white;">${badgeHtml}${item.title}</h4>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0; line-height: 1.4;">${item.desc.substring(0, 75)}...</p>`;
+                    searchResults.appendChild(a);
+                });
+            } else {
+                searchResults.style.display = 'flex';
+                searchResults.innerHTML = `<div style="padding: 1rem; color: var(--text-muted); font-size: 0.85rem; text-align: center;">No matching research papers or crop guides found.</div>`;
+            }
+        });
+    }
 
     // Hide search results when clicking outside
     document.addEventListener('click', function(e) {

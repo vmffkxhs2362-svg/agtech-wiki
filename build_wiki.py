@@ -250,20 +250,29 @@ def build_research_page(template, topics, crop_nav_html, topic_nav_html):
         </div>
         
         <h1 id="overview">🔬 Scientific Research Library</h1>
-        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
+        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2rem; line-height: 1.6;">
             Doctoral and peer-reviewed plant physiology, bioenergetics, and climate steering papers. Articles are published chronologically with complete NCBI PubMed DOIs, PubChem CIDs, and KEGG pathway maps.
         </p>
 
-        <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
+        <!-- Live Research Search Filter Bar -->
+        <div style="margin-bottom: 2.5rem; background: var(--bg-surface); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <input type="text" id="researchFilterInput" placeholder="🔍 Filter papers by title, keyword, enzyme (EC), or PubMed DOI..." style="flex: 1; min-width: 280px; padding: 0.8rem 1.2rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white; outline: none; font-size: 1rem; font-family: 'Inter';">
+            </div>
+            <div id="filterCount" style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--primary); font-weight: 600;">Showing all {len(topics_sorted)} research papers</div>
+        </div>
+
+        <div id="researchList" style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
     """
 
     for item in topics_sorted:
         pub_date = item.get('published_date', 'Recently Published')
         ref_count = len(item.get('references', []))
         tax = item.get('taxonomy', {})
+        search_str = f"{item['title']} {item.get('overview', '')} {tax.get('family', '')} {tax.get('genus', '')} {tax.get('species', '')} {tax.get('origin', '')}".lower()
 
-        content_html += f"""
-            <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.2s;">
+    content_html += f"""
+            <div class="research-card" data-search="{search_str}" style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.2s;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 0.5rem;">
                     <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3);">🗓️ Published: {pub_date}</span>
                     <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 600;">📚 {ref_count} Peer-Reviewed Citations</span>
@@ -287,7 +296,32 @@ def build_research_page(template, topics, crop_nav_html, topic_nav_html):
             </div>
         """
 
-    content_html += "</div>"
+    content_html += """
+        </div>
+
+        <script>
+            const filterInput = document.getElementById('researchFilterInput');
+            const cards = document.querySelectorAll('.research-card');
+            const filterCount = document.getElementById('filterCount');
+
+            if (filterInput) {
+                filterInput.addEventListener('input', function(e) {
+                    const q = e.target.value.toLowerCase().trim();
+                    let visible = 0;
+                    cards.forEach(card => {
+                        const text = card.getAttribute('data-search') || '';
+                        if (!q || text.includes(q)) {
+                            card.style.display = 'block';
+                            visible++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    filterCount.textContent = `Showing ${visible} of ${cards.length} research papers`;
+                });
+            }
+        </script>
+    """
 
     output = template.replace("{{TITLE}}", "Scientific Research Library | AgriAtlas")
     output = output.replace("{{DESC}}", "Chronological Index of PhD-Level CEA Plant Physiology and Climate Steering Research Papers.")
@@ -306,13 +340,20 @@ def generate_search_index(crops, topics):
         search_data.append({
             "title": crop['title'],
             "url": f"{crop['id']}.html",
-            "desc": crop.get('description', '')
+            "desc": crop.get('description', ''),
+            "type": "Crop Encyclopedia",
+            "badge": "📚 Crop",
+            "keywords": f"{crop.get('taxonomy', {}).get('species', '')} {crop.get('taxonomy', {}).get('family', '')}"
         })
     for topic in topics:
         search_data.append({
             "title": topic['title'],
             "url": f"{topic['id']}.html",
-            "desc": topic.get('description', '')
+            "desc": topic.get('overview', topic.get('description', '')),
+            "type": "Research Paper",
+            "badge": "🔬 Research",
+            "published_date": topic.get('published_date', ''),
+            "keywords": f"{topic.get('taxonomy', {}).get('family', '')} {topic.get('taxonomy', {}).get('genus', '')} {topic.get('taxonomy', {}).get('species', '')} {topic.get('taxonomy', {}).get('origin', '')}"
         })
     with open(os.path.join(OUT_DIR, "search_index.js"), "w", encoding="utf-8") as f:
         f.write(f"const searchIndex = {json.dumps(search_data, ensure_ascii=False)};")
