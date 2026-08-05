@@ -9,12 +9,14 @@ RESEARCH_DIR = "data/research/"
 OUT_DIR = "./"
 
 def generate_navigation(items, active_id):
-    # Sort items alphabetically by title
-    items_sorted = sorted(items, key=lambda x: x['title'])
+    # Sort items alphabetically by title or name
+    items_sorted = sorted(items, key=lambda x: x.get('title') or x.get('name') or '')
     nav_html = ""
     for item in items_sorted:
-        active_class = " active" if item['id'] == active_id else ""
-        nav_html += f'<a href="{item["id"]}.html" class="nav-link{active_class}">{item["title"]}</a>\n            '
+        item_id = item.get('id') or item.get('crop_id') or ''
+        item_title = item.get('name') or item.get('title') or ''
+        active_class = " active" if item_id == active_id else ""
+        nav_html += f'<a href="{item_id}.html" class="nav-link{active_class}">{item_title}</a>\n            '
     return nav_html
 
 def build_page(template, data, crop_nav_html, topic_nav_html):
@@ -398,9 +400,14 @@ def main():
     
     # Build each crop page
     for data in crops_data:
-        active_crop_nav = generate_navigation(crops_data, active_id=data['id'])
+        crop_id = data.get('id') or data.get('crop_id')
+        if 'id' not in data:
+            data['id'] = crop_id
+        if 'title' not in data:
+            data['title'] = data.get('name', crop_id)
+        active_crop_nav = generate_navigation(crops_data, active_id=crop_id)
         build_page(template, data, active_crop_nav, topic_nav_html)
-        print(f"Built crop: {data['id']}.html")
+        print(f"Built crop: {crop_id}.html")
         
     # Build each topic page
     for data in topics_data:
