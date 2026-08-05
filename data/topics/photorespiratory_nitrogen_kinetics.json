@@ -1,6 +1,7 @@
 {
   "id": "photorespiratory_nitrogen_kinetics",
   "title": "Bioenergetic Modeling of Photorespiratory Nitrogen Flux & Stomatal Conductance",
+  "published_date": "2026-08-05 10:15:00 UTC",
   "description": "PhD-level scientific paper modeling the thermodynamic coupling between VPD-induced stomatal closure, mesophyll CO2 limitation, and GS-GOGAT nitrogen assimilation kinetics in greenhouse Solanaceae.",
   "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg",
   "image_caption": "Controlled Environment Agriculture (CEA) tomato canopy subjected to high-resolution micro-meteorological VPD monitoring and spectral irradiance steering.",

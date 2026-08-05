@@ -245,6 +245,67 @@ def build_index_page(template, crops, topics, crop_nav_html, topic_nav_html):
     with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(output)
 
+def build_research_page(template, topics, crop_nav_html, topic_nav_html):
+    # Sort topics chronologically by published_date descending (newest first)
+    topics_sorted = sorted(topics, key=lambda x: x.get('published_date', '2000-01-01'), reverse=True)
+
+    content_html = f"""
+        <div class="breadcrumb">
+            <a href="index.html" style="color: var(--primary); text-decoration: none;">AgriAtlas</a> 
+            <span>/</span> <span style="color: var(--text-muted);">Scientific Research Library</span>
+        </div>
+        
+        <h1 id="overview">🔬 Scientific Research Library</h1>
+        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 3rem; line-height: 1.6;">
+            Doctoral and peer-reviewed plant physiology, bioenergetics, and climate steering papers. Articles are published chronologically with complete NCBI PubMed DOIs, PubChem CIDs, and KEGG pathway maps.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
+    """
+
+    for item in topics_sorted:
+        pub_date = item.get('published_date', 'Recently Published')
+        ref_count = len(item.get('references', []))
+        tax = item.get('taxonomy', {})
+
+        content_html += f"""
+            <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.2s;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 0.5rem;">
+                    <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3);">🗓️ Published: {pub_date}</span>
+                    <span style="font-size: 0.85rem; color: var(--accent-green); font-weight: 600;">📚 {ref_count} Peer-Reviewed Citations</span>
+                </div>
+                
+                <h2 style="margin: 0.5rem 0 1rem 0; font-size: 1.8rem; color: white;">
+                    <a href="{item['id']}.html" style="color: white; text-decoration: none;">{item['title']}</a>
+                </h2>
+                
+                <div style="display: flex; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; flex-wrap: wrap;">
+                    <span>🧬 Family: <strong style="color: #cbd5e1;">{tax.get('family', 'N/A')}</strong></span>
+                    <span>🔬 Genus: <strong style="color: #cbd5e1;">{tax.get('genus', 'N/A')}</strong></span>
+                    <span>🌍 Dataset: <strong style="color: #cbd5e1;">{tax.get('origin', 'N/A')}</strong></span>
+                </div>
+
+                <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 1.5rem; font-size: 1.05rem;">
+                    {item.get('overview', '')[:280]}...
+                </p>
+
+                <a href="{item['id']}.html" style="display: inline-block; background: var(--primary); color: #0f172a; font-weight: bold; padding: 0.7rem 1.5rem; border-radius: 8px; text-decoration: none; font-size: 0.95rem;">Read Full Research Paper →</a>
+            </div>
+        """
+
+    content_html += "</div>"
+
+    output = template.replace("{{TITLE}}", "Scientific Research Library | AgriAtlas")
+    output = output.replace("{{DESC}}", "Chronological Index of PhD-Level CEA Plant Physiology and Climate Steering Research Papers.")
+    output = output.replace("{{OG_IMAGE}}", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg")
+    output = output.replace("{{CONTENT}}", content_html)
+    output = output.replace("{{CROP_NAVIGATION}}", crop_nav_html)
+    output = output.replace("{{TOPIC_NAVIGATION}}", topic_nav_html)
+    output = output.replace("{{RIGHT_SIDEBAR}}", "")
+
+    with open(os.path.join(OUT_DIR, "research.html"), "w", encoding="utf-8") as f:
+        f.write(output)
+
 def generate_search_index(crops, topics):
     search_data = []
     for crop in crops:
@@ -259,7 +320,6 @@ def generate_search_index(crops, topics):
             "url": f"{topic['id']}.html",
             "desc": topic.get('description', '')
         })
-    # Save as JS to avoid CORS file:/// blocks when running locally
     with open(os.path.join(OUT_DIR, "search_index.js"), "w", encoding="utf-8") as f:
         f.write(f"const searchIndex = {json.dumps(search_data, ensure_ascii=False)};")
 
@@ -299,6 +359,10 @@ def main():
     # Build index page
     build_index_page(template, crops_data, topics_data, crop_nav_html, topic_nav_html)
     print("Built: index.html (Homepage)")
+
+    # Build research library page
+    build_research_page(template, topics_data, crop_nav_html, topic_nav_html)
+    print("Built: research.html (Scientific Research Library)")
     
     # Generate search index
     generate_search_index(crops_data, topics_data)
