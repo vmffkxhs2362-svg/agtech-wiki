@@ -399,115 +399,13 @@ def generate_search_index(crops, topics, research):
     with open(os.path.join(OUT_DIR, "search_index.js"), "w", encoding="utf-8") as f:
         f.write(f"const searchIndex = {json.dumps(search_data, ensure_ascii=False)};")
 
-def build_news_index_page(template, news_data, crop_nav_html, topic_nav_html):
-    news_sorted = sorted(news_data, key=lambda x: x.get('published_date', ''), reverse=True)
-    
-    content_html = f"""
-        <div class="breadcrumb">
-            <a href="index.html" style="color: var(--primary); text-decoration: none;">AgriAtlas</a> 
-            <span>/</span> <span style="color: var(--text-muted);">Global AgTech & Energy Intelligence News</span>
-        </div>
-        
-        <h1 id="overview">📰 Global AgTech & Energy Intelligence News</h1>
-        <p style="font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2.5rem; line-height: 1.6;">
-            Original analytical news reports synthesizing EU energy market trends, German agricultural tariffs, and USDA wholesale price elasticity with engineering physics.
-        </p>
-
-        <div style="display: flex; flex-direction: column; gap: 2rem; margin-bottom: 3rem;">
-    """
-    
-    for item in news_sorted:
-        nid = item['id']
-        title = item['title']
-        pub_date = item.get('published_date', '')
-        category = item.get('category', 'AgTech News')
-        summary = item.get('summary', '')
-        author = item.get('author', 'Inwoovation Lab')
-        
-        content_html += f"""
-            <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; backdrop-filter: blur(10px);">
-                <div style="display: flex; gap: 0.8rem; align-items: center; margin-bottom: 0.8rem;">
-                    <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem;">{category}</span>
-                    <span style="color: var(--text-muted); font-size: 0.85rem;">🗓️ {pub_date}</span>
-                </div>
-                <h2 style="margin: 0 0 0.8rem 0; font-size: 1.5rem;"><a href="{nid}.html" style="color: white; text-decoration: none;">{title}</a></h2>
-                <p style="color: #cbd5e1; line-height: 1.6; font-size: 1rem; margin-bottom: 1.5rem;">{summary}</p>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="color: var(--text-muted); font-size: 0.85rem;">✍️ {author}</span>
-                    <a href="{nid}.html" style="color: var(--primary); font-weight: bold; text-decoration: none; font-size: 0.95rem;">Read Full Intelligence Report →</a>
-                </div>
-            </div>
-        """
-        
-    content_html += "</div>"
-    
-    output = template.replace("{{TITLE}}", "Global AgTech & Energy News | AgriAtlas")
-    output = output.replace("{{DESC}}", "Original Analytical AgTech and Energy Market Intelligence")
-    output = output.replace("{{OG_IMAGE}}", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg")
-    output = output.replace("{{CONTENT}}", content_html)
-    output = output.replace("{{CROP_NAVIGATION}}", crop_nav_html)
-    output = output.replace("{{TOPIC_NAVIGATION}}", topic_nav_html)
-    output = output.replace("{{RIGHT_SIDEBAR}}", "")
-    
-    with open(os.path.join(OUT_DIR, "news.html"), "w", encoding="utf-8") as f:
-        f.write(output)
-
-def build_news_article_page(template, data, crop_nav_html, topic_nav_html):
-    nid = data['id']
-    title = data['title']
-    pub_date = data.get('published_date', '')
-    summary = data.get('summary', '')
-    category = data.get('category', 'AgTech News')
-    author = data.get('author', 'Inwoovation Lab')
-    paragraphs = data.get('content_paragraphs', [])
-    citations = data.get('source_citations', [])
-    
-    body_html = "".join([f"<p style='color: #cbd5e1; font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;'>{p}</p>" for p in paragraphs])
-    
-    citations_html = ""
-    if citations:
-        citations_html = """<div style='margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);'><h3 style='color: white;'>🔗 Source Citations & References</h3><ul style='color: #94a3b8; font-size: 0.9rem;'>"""
-        for c in citations:
-            citations_html += f"<li><strong>{c.get('publisher')}:</strong> {c.get('topic')} (<a href='{c.get('link')}' target='_blank' style='color: var(--primary);'>Source Link ↗</a>)</li>"
-        citations_html += "</ul></div>"
-
-    content_html = f"""
-        <div class="breadcrumb">
-            <a href="index.html" style="color: var(--primary); text-decoration: none;">AgriAtlas</a> 
-            <span>/</span> <a href="news.html" style="color: var(--primary); text-decoration: none;">News</a>
-            <span>/</span> <span style="color: var(--text-muted);">{title[:30]}...</span>
-        </div>
-        
-        <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem;">{category}</span>
-        <h1 style="margin-top: 0.8rem; font-size: 2.2rem; line-height: 1.3; color: white;">{title}</h1>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">🗓️ Published {pub_date} • ✍️ Authored by {author}</p>
-
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem;">
-            <p style="font-size: 1.15rem; color: #f8fafc; font-weight: 600; line-height: 1.7; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem;">{summary}</p>
-            {body_html}
-            {citations_html}
-        </div>
-    """
-    
-    output = template.replace("{{TITLE}}", f"{title} | AgriAtlas News")
-    output = output.replace("{{DESC}}", summary)
-    output = output.replace("{{OG_IMAGE}}", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Greenhouse_tomato.jpg/800px-Greenhouse_tomato.jpg")
-    output = output.replace("{{CONTENT}}", content_html)
-    output = output.replace("{{CROP_NAVIGATION}}", crop_nav_html)
-    output = output.replace("{{TOPIC_NAVIGATION}}", topic_nav_html)
-    output = output.replace("{{RIGHT_SIDEBAR}}", "")
-    
-    with open(os.path.join(OUT_DIR, f"{nid}.html"), "w", encoding="utf-8") as f:
-        f.write(output)
-
 def generate_sitemap_and_robots(crops, topics, research):
     base_url = "https://wiki.inwoovation.com"
     today_str = datetime.now().strftime("%Y-%m-%d")
     
     urls = [
         f"  <url><loc>{base_url}/</loc><lastmod>{today_str}</lastmod><priority>1.0</priority></url>",
-        f"  <url><loc>{base_url}/research.html</loc><lastmod>{today_str}</lastmod><priority>0.9</priority></url>",
-        f"  <url><loc>{base_url}/news.html</loc><lastmod>{today_str}</lastmod><priority>0.9</priority></url>"
+        f"  <url><loc>{base_url}/research.html</loc><lastmod>{today_str}</lastmod><priority>0.9</priority></url>"
     ]
     
     for c in crops:
@@ -558,13 +456,6 @@ def main():
     for rf in research_files:
         with open(rf, "r", encoding="utf-8") as f:
             research_data.append(json.load(f))
-
-    # Read all news JSONs
-    news_files = glob.glob(os.path.join(NEWS_DIR, "*.json"))
-    news_data = []
-    for nf in news_files:
-        with open(nf, "r", encoding="utf-8") as f:
-            news_data.append(json.load(f))
             
     crop_nav_html = generate_navigation(crops_data, active_id=None)
     topic_nav_html = generate_navigation(topics_data, active_id=None)
@@ -590,11 +481,6 @@ def main():
     for data in research_data:
         build_page(template, data, crop_nav_html, topic_nav_html)
         print(f"Built research paper: {data['id']}.html")
-
-    # Build each news article page
-    for data in news_data:
-        build_news_article_page(template, data, crop_nav_html, topic_nav_html)
-        print(f"Built news article: {data['id']}.html")
         
     # Build index page
     build_index_page(template, crops_data, topics_data, crop_nav_html, topic_nav_html)
@@ -603,10 +489,6 @@ def main():
     # Build research library page
     build_research_page(template, research_data, crop_nav_html, topic_nav_html)
     print("Built: research.html (Scientific Research Library)")
-
-    # Build news index page
-    build_news_index_page(template, news_data, crop_nav_html, topic_nav_html)
-    print("Built: news.html (Global AgTech & Energy News)")
     
     # Generate search index
     generate_search_index(crops_data, topics_data, research_data)
