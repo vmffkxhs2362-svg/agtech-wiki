@@ -272,7 +272,7 @@ def build_research_page(template, topics, crop_nav_html, topic_nav_html):
         tax = item.get('taxonomy', {})
         search_str = f"{item['title']} {item.get('overview', '')} {tax.get('family', '')} {tax.get('genus', '')} {tax.get('species', '')} {tax.get('origin', '')}".lower()
 
-    content_html += f"""
+        content_html += f"""
             <div class="research-card" data-search="{search_str}" style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color 0.2s;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap; gap: 0.5rem;">
                     <span style="font-size: 0.85rem; color: var(--primary); font-weight: 700; background: rgba(56, 189, 248, 0.1); padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3);">🗓️ Published: {pub_date}</span>
