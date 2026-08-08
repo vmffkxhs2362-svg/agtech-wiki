@@ -202,6 +202,9 @@ def build_page(template, data, crop_nav_html, topic_nav_html):
         """
         
     output = template.replace("{{TITLE}}", f"{data['title']} | AgriAtlas")
+    page_id = data['id']
+    canonical_tag = f'<link rel="canonical" href="https://wiki.inwoovation.com/{page_id}.html" />'
+    output = output.replace("</head>", f"    {canonical_tag}\n</head>")
     output = output.replace("{{DESC}}", data.get('description', ''))
     output = output.replace("{{OG_IMAGE}}", data.get('image_url', ''))
     output = output.replace("{{CONTENT}}", content_html)
