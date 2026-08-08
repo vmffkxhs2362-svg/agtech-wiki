@@ -2,6 +2,8 @@
   "crop_id": "kale",
   "name": "Curly Kale",
   "title": "Curly Kale (Brassica oleracea var. sabellica)",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Kale_Leaf.jpg/800px-Kale_Leaf.jpg",
+  "description": "Cold temperature stress elicitation, anthocyanin accumulation, and vertical farm LED light spectrum optimization for nutrient density.",
   "category": "Superfood Leafy Green",
   "summary": "High-density nutrient-rich Brassica cultivar requiring cold DIF steering, glucosinolate enhancement, and controlled boundary layer micro-airflow.",
   "ideal_vpd_kPa": {

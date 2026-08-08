@@ -1,8 +1,11 @@
 {
   "crop_id": "spinach",
   "name": "Spinach",
+  "title": "Spinach (Spinacia oleracea)",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Spinach_leaves.jpg/800px-Spinach_leaves.jpg",
+  "description": "Nitrate accumulation control, oxalate reduction kinetics, and hydroponic NFT root zone temperature management for high yields.",
   "scientific_name": "Spinacia oleracea",
-  "category": "Leafy Green",
+  "category": "Nutritional Leafy Greens",
   "summary": "High-density cool-climate leafy green requiring strict nitrate steering, controlled root zone temperature, and precise DLI photoperiod management.",
   "ideal_vpd_kPa": {
     "min": 0.7,

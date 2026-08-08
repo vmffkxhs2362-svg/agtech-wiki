@@ -2,7 +2,9 @@
   "crop_id": "swiss_chard",
   "name": "Swiss Chard",
   "title": "Swiss Chard (Beta vulgaris subsp. vulgaris)",
-  "category": "Pigmented Leafy Green",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Swiss_Chard.jpg/800px-Swiss_Chard.jpg",
+  "description": "Betalain pigment elicitation, root zone EC salinity management, and Controlled Environment Agriculture climate guidelines.",
+  "category": "Colored Leafy Greens",
   "summary": "High-antioxidant betalain-rich leafy vegetable requiring dynamic blue-green spectrum ratios and precise Na+/K+ ratio regulation.",
   "ideal_vpd_kPa": {
     "min": 0.7,
