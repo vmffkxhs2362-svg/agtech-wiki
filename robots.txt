@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wiki.inwoovation.com/sitemap.xml
+Sitemap: https://inwoovation.com/wiki/sitemap.xml
